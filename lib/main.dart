@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lernquiz_app/screens/home_screen.dart';
+import 'package:flutter_lernquiz_app/screens/loading_screen.dart';
 import 'package:flutter_lernquiz_app/screens/themen_screen.dart';
 
 void main() => runApp(MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.lime,
       ),
-      home: MyBottomNavigationBar(),
+      home: LoadingScreen(),
     );
   }
 }

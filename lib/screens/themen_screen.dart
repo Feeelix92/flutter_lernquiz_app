@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lernquiz_app/screens/home_screen.dart';
+import 'package:flutter_lernquiz_app/screens/quiz_screen.dart';
 
 class ThemenScreen extends StatefulWidget {
   @override
@@ -7,7 +7,7 @@ class ThemenScreen extends StatefulWidget {
 }
 
 class _ThemenScreenState extends State<ThemenScreen> {
-  @override
+    @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -16,17 +16,87 @@ class _ThemenScreenState extends State<ThemenScreen> {
           Icon(Icons.menu),
         ],
       ),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            buildButton(context, "Multimediagrundlagen", HomeScreen()),
-            buildButton(context, "Programmierung 1", HomeScreen()),
-            buildButton(context, "Programmierung 2", HomeScreen()),
-          ],
-        ),
+      body: ListView(
+        children: <Widget>[
+          themenCard(context, "Multimediagrundlagen", Colors.lime, 'assets/img/bild_home.jpg'),
+          themenCard(context, "Programmierung 1", Colors.indigo, 'assets/img/bild_home.jpg',),
+          themenCard(context, "Programmierung 2", Colors.orange, 'assets/img/bild_home.jpg',),
+        ],
       ),
+
+//      body: Center(
+//        child: Column(
+//          children: <Widget>[
+//            buildButton(context, "Multimediagrundlagen", HomeScreen()),
+//            buildButton(context, "Programmierung 1", HomeScreen()),
+//            buildButton(context, "Programmierung 2", HomeScreen()),
+//          ],
+//        ),
+//      ),
     );
   }
+}
+
+Widget themenCard(context, title, backgroundColor, imagePath) {
+  return Padding(
+    padding: EdgeInsets.all(
+      20.0,
+    ),
+    child: InkWell(
+      onTap: (){
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (context) => GetJson(),
+        ));
+      },
+      child: Material(
+        color: backgroundColor,
+        elevation: 10.0,
+        borderRadius: BorderRadius.circular(
+          10.0,
+        ),
+        child: Container(
+          child: Column(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  vertical: 10.0,
+                ),
+                child: Material(
+                  elevation: 5.0,
+                  borderRadius: BorderRadius.circular(
+                    100.0,
+                  ),
+                  child: Container(
+                    height: 200.0,
+                    width: 200.0,
+                    child: ClipOval(
+                      child: Image(
+                        image: AssetImage(
+                          imagePath,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Center(
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 25.0,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.all(10.0),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
 }
 
 Widget buildButton(BuildContext context, text, widget) {
