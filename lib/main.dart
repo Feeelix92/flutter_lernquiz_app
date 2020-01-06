@@ -13,7 +13,51 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.lime,
       ),
-      home: ThemenScreen(),
+      home: MyBottomNavigationBar(),
+    );
+  }
+}
+
+class MyBottomNavigationBar extends StatefulWidget {
+  @override
+  _MyBottomNavigationBarState createState() => _MyBottomNavigationBarState();
+}
+
+class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
+
+  int _currentIndex = 0;
+  final List<Widget> _children = [
+    HomeScreen(),
+    HomeScreen(),
+    ThemenScreen(),
+  ];
+  void onTappedBar(int index){
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _children [_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+          onTap: onTappedBar,
+          currentIndex: _currentIndex,
+          items: [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.fiber_new),
+          title: Text('neue Fragen'),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          title: Text('Home'),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.folder_open),
+          title: Text('Themen'),
+        )
+      ]),
     );
   }
 }

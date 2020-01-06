@@ -22,20 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(currentIndex: 1, items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.fiber_new),
-          title: Text('neue Fragen'),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          title: Text('Home'),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.folder_open),
-          title: Text('Themen'),
-        )
-      ]),
     );
   }
 }

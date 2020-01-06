@@ -25,23 +25,10 @@ class _ThemenScreenState extends State<ThemenScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(currentIndex: 2, items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.fiber_new),
-          title: Text('neue Fragen'),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          title: Text('Home'),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.folder_open),
-          title: Text('Themen'),
-        ),
-      ]),
     );
   }
 }
+
 Widget buildButton(BuildContext context, text, widget) {
   return RaisedButton(
     onPressed: () {
