@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_lernquiz_app/screens/quiz_screen.dart';
 
 class ThemenScreen extends StatefulWidget {
@@ -7,8 +8,10 @@ class ThemenScreen extends StatefulWidget {
 }
 
 class _ThemenScreenState extends State<ThemenScreen> {
-    @override
+  @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
     return Scaffold(
       appBar: AppBar(
         title: Text("Themen"),
@@ -18,9 +21,20 @@ class _ThemenScreenState extends State<ThemenScreen> {
       ),
       body: ListView(
         children: <Widget>[
-          themenCard(context, "Multimediagrundlagen", Colors.lime, 'assets/img/bild_home.jpg'),
-          themenCard(context, "Programmierung 1", Colors.indigo, 'assets/img/bild_home.jpg',),
-          themenCard(context, "Programmierung 2", Colors.orange, 'assets/img/bild_home.jpg',),
+          themenCard(context, "Multimediagrundlagen", Colors.lime,
+              'assets/img/bild_home.jpg'),
+          themenCard(
+            context,
+            "Programmierung 1",
+            Colors.indigo,
+            'assets/img/bild_home.jpg',
+          ),
+          themenCard(
+            context,
+            "Programmierung 2",
+            Colors.orange,
+            'assets/img/bild_home.jpg',
+          ),
         ],
       ),
 
@@ -43,7 +57,7 @@ Widget themenCard(context, title, backgroundColor, imagePath) {
       20.0,
     ),
     child: InkWell(
-      onTap: (){
+      onTap: () {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => GetJson(),
         ));

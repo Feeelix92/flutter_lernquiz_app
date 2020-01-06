@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class GetJson extends StatelessWidget {
   @override
@@ -52,52 +53,79 @@ class _QuizPageState extends State<QuizPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            flex: 3,
-            child: Container(
-              padding: EdgeInsets.all(15.0),
-              alignment: Alignment.bottomLeft,
-              child: Text(
-                "Beispiel Frage?",
-                style: TextStyle(
-                  fontSize: 20.0,
-                ),
-              ),
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
+    return WillPopScope(
+      onWillPop: (){
+        return showDialog(
+            context: context,
+          builder: (context) => AlertDialog(
+            title: Text(
+              "Hinweis"
             ),
-          ),
-          Expanded(
-            flex: 6,
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  antwortButton("a"),
-                  antwortButton("b"),
-                  antwortButton("c"),
-                  antwortButton("d"),
-                ],
-              ),
+            content: Text(
+              "Du kannst an dieser Stelle nicht zurück gehen."
             ),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: (){
+                  Navigator.of(context).pop();
+                },
+                  child: Text(
+                    "OK",
+                  ),
+              ),
+            ],
           ),
-          Expanded(
-            flex: 1,
-            child: Container(
-              alignment: Alignment.topCenter,
-              child: Center(
+        );
+      },
+      child: Scaffold(
+        body: Column(
+          children: <Widget>[
+            Expanded(
+              flex: 3,
+              child: Container(
+                padding: EdgeInsets.all(15.0),
+                alignment: Alignment.bottomLeft,
                 child: Text(
-                  "30",
+                  "Beispiel Frage?",
                   style: TextStyle(
                     fontSize: 20.0,
-                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+            Expanded(
+              flex: 6,
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    antwortButton("a"),
+                    antwortButton("b"),
+                    antwortButton("c"),
+                    antwortButton("d"),
+                  ],
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                alignment: Alignment.topCenter,
+                child: Center(
+                  child: Text(
+                    "30",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
