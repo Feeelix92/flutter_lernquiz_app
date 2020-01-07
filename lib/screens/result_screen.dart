@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_lernquiz_app/screens/themen_screen.dart';
+import 'package:flutter_lernquiz_app/main.dart';
 
 class ResultPageScreen extends StatefulWidget {
 
-  int punkte;
-  int richtigeAntworten;
-  int anzahlFragen;
+  final punkte;
+  final richtigeAntworten;
+  final anzahlFragen;
   ResultPageScreen({key, this.punkte, this.richtigeAntworten, this.anzahlFragen}) : super(key: key);
 
   @override
@@ -99,7 +99,7 @@ class _ResultPageScreenState extends State<ResultPageScreen> {
                 OutlineButton(
                   onPressed: () {
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => ThemenScreen(),
+                      builder: (context) => MyBottomNavigationBar(),
                     ));
                   },
                   child: Text(

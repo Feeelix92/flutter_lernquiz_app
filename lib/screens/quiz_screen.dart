@@ -29,7 +29,7 @@ class GetJson extends StatelessWidget {
 
 class QuizPage extends StatefulWidget {
 
-  var myInput;
+  final myInput;
   QuizPage({key, this.myInput}) : super(key: key);
 
   @override
