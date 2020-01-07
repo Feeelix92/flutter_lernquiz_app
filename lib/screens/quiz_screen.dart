@@ -47,7 +47,7 @@ class _QuizPageState extends State<QuizPage> {
   int punkte = 0;
   int anzahlFragen = 0;
   int richtigeAntworten = 0;
-  //Index um die jeweilige Frage bzw. Antowort aus dem Json zu laden.
+  //Index um die jeweilige Frage bzw. Antwort aus dem Json zu laden.
   int index = 1;
   //Default Wert für die Zeit je Frage
   int timer = 30;
