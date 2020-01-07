@@ -26,7 +26,7 @@ class MyBottomNavigationBar extends StatefulWidget {
 
 class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
 
-  int _currentIndex = 0;
+  int _currentIndex = 1;
   final List<Widget> _children = [
     HomeScreen(),
     HomeScreen(),
