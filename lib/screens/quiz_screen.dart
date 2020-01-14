@@ -28,8 +28,8 @@ class GetJson extends StatelessWidget {
 }
 
 class QuizPage extends StatefulWidget {
-
   final myInput;
+
   QuizPage({key, this.myInput}) : super(key: key);
 
   @override
@@ -37,8 +37,8 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-
   var myInput;
+
   _QuizPageState(this.myInput);
 
   Color colortoshow = Colors.blue;
@@ -47,23 +47,25 @@ class _QuizPageState extends State<QuizPage> {
   int punkte = 0;
   int anzahlFragen = 0;
   int richtigeAntworten = 0;
+
   //Index um die jeweilige Frage bzw. Antowort aus dem Json zu laden.
   int index = 1;
-  //Default Wert für die Zeit je Frage
+
+  //Default Wert für die Zeit je Fragek
   int timer = 30;
   String showTimer = "30";
   bool cancelTimer = false;
 
   //Ausgangsfarbe der Antwort Buttons
   Map<String, Color> btnColor = {
-    "a": Colors.blue,
-    "b": Colors.blue,
-    "c": Colors.blue,
-    "d": Colors.blue
+    "a": Colors.lightBlueAccent,
+    "b": Colors.lightBlueAccent,
+    "c": Colors.lightBlueAccent,
+    "d": Colors.lightBlueAccent,
   };
 
   @override
-  void initState(){
+  void initState() {
     startTimer();
     super.initState();
   }
@@ -71,14 +73,14 @@ class _QuizPageState extends State<QuizPage> {
   //Funktion wechselt automatisch zur nächsten Frage wenn die Zeit abgelaufen ist.
   void startTimer() async {
     const oneSecond = Duration(seconds: 1);
-    Timer.periodic(oneSecond, (time){
+    Timer.periodic(oneSecond, (time) {
       setState(() {
-        if(timer < 1) {
+        if (timer < 1) {
           time.cancel();
           nextQuestion();
-        }else if(cancelTimer == true){
+        } else if (cancelTimer == true) {
           time.cancel();
-        }else{
+        } else {
           timer = timer - 1;
         }
         showTimer = timer.toString();
@@ -88,40 +90,43 @@ class _QuizPageState extends State<QuizPage> {
 
   //Funktion ändert den Fragenindex bzw. wechselt zur nächsten Frage
   //setzt den Timer und die Button Farben für jede Frage zurück.
-  void nextQuestion(){
+  void nextQuestion() {
     cancelTimer = false;
     timer = 30;
     setState(() {
-      if(index < 10){
+      if (index < 10) {
         index++;
-      }else{
+      } else {
+        cancelTimer = true;
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => ResultPageScreen(punkte: punkte, richtigeAntworten: richtigeAntworten, anzahlFragen: anzahlFragen),
+          builder: (context) => ResultPageScreen(
+              punkte: punkte,
+              richtigeAntworten: richtigeAntworten,
+              anzahlFragen: anzahlFragen),
         ));
       }
-      btnColor["a"] = Colors.blue;
-      btnColor["b"] = Colors.blue;
-      btnColor["c"] = Colors.blue;
-      btnColor["d"] = Colors.blue;
+      btnColor["a"] = Colors.lightBlueAccent;
+      btnColor["b"] = Colors.lightBlueAccent;
+      btnColor["c"] = Colors.lightBlueAccent;
+      btnColor["d"] = Colors.lightBlueAccent;
     });
     startTimer();
   }
 
   //Funktion prüft ob die ausgewählte Antwort korrekt ist.
-  void checkanswer(option){
+  void checkanswer(option) {
     anzahlFragen++;
-    if(myInput[2]["1"] == myInput[1]["1"][option]){
+    if (myInput[2]["1"] == myInput[1]["1"][option]) {
       punkte = punkte + 5;
       richtigeAntworten++;
       colortoshow = right;
-    }else{
+    } else {
       colortoshow = wrong;
     }
     setState(() {
       btnColor[option] = colortoshow;
       cancelTimer = true;
     });
-
     Timer(Duration(seconds: 2), nextQuestion);
   }
 
@@ -132,16 +137,20 @@ class _QuizPageState extends State<QuizPage> {
         vertical: 10.0,
         horizontal: 20.0,
       ),
-      child: MaterialButton(
-        onPressed: () => checkanswer(option),
-        child: Text(
-          "Antwort: " + myInput[1][index.toString()][option],
-          style: TextStyle(
-            fontSize: 18.0,
+      child: Container(
+        height: 50.0,
+        width: 300.0,
+        child: MaterialButton(
+          onPressed: () => checkanswer(option),
+          child: Text(
+            myInput[1][index.toString()][option],
+            style: TextStyle(
+              fontSize: 18.0,
+            ),
+            maxLines: 1,
           ),
-          maxLines: 1,
+          color: btnColor[option],
         ),
-        color: btnColor[option],
       ),
     );
   }
@@ -152,35 +161,37 @@ class _QuizPageState extends State<QuizPage> {
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
     return WillPopScope(
-      onWillPop: (){
+      onWillPop: () {
         return showDialog(
-            context: context,
+          context: context,
           builder: (context) => AlertDialog(
-            title: Text(
-              "Hinweis"
-            ),
-            content: Text(
-              "Du kannst an dieser Stelle nicht zurück gehen."
-            ),
+            title: Text("Hinweis"),
+            content: Text("Du kannst an dieser Stelle nicht zurück gehen."),
             actions: <Widget>[
               FlatButton(
-                onPressed: (){
+                onPressed: () {
                   Navigator.of(context).pop();
                 },
-                  child: Text(
-                    "OK",
-                  ),
+                child: Text(
+                  "OK",
+                ),
               ),
             ],
           ),
         );
       },
       child: Scaffold(
+        appBar: AppBar(
+          title: Text("Multimediagrundlagen"), //Thema Name
+          actions: <Widget>[
+            Icon(Icons.menu),
+          ],
+        ),
         body: Column(
           children: <Widget>[
             //Bereich für die Anzeige der Frage
             Expanded(
-              flex: 3,
+              flex: 2,
               child: Container(
                 padding: EdgeInsets.all(15.0),
                 alignment: Alignment.bottomLeft,

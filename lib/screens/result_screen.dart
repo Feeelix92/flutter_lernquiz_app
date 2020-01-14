@@ -35,7 +35,7 @@ class _ResultPageScreenState extends State<ResultPageScreen> {
       message = "$score \n\nNicht schlecht, aber nächstes Mal wirst du noch besser abschneiden!";
     }else{
       image = images[2];
-      message = "$score \n\nßDu solltest dir die Lerninhalte nochmals angucken!";
+      message = "$score \n\nDu solltest dir die Lerninhalte nochmals angucken!";
     }
     super.initState();
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lernquiz_app/screens/home_screen.dart';
 import 'package:flutter_lernquiz_app/screens/loading_screen.dart';
+import 'package:flutter_lernquiz_app/screens/neue_fragen_screen.dart';
 import 'package:flutter_lernquiz_app/screens/themen_screen.dart';
 
 void main() => runApp(MyApp());
@@ -28,7 +29,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
 
   int _currentIndex = 1;
   final List<Widget> _children = [
-    HomeScreen(),
+    NeueFragenScreen(),
     HomeScreen(),
     ThemenScreen(),
   ];
