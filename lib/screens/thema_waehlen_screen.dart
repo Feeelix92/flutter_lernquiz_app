@@ -7,6 +7,13 @@ class ThemaWaehlenScreen extends StatefulWidget {
   _ThemaWaehlenScreenState createState() => _ThemaWaehlenScreenState();
 }
 
+String dropdownStr = "Multimediagrundlagen";
+List<String> themen = [
+  "Multimediagrundlagen",
+  "Programmierung 1",
+  "Programmierung 2",
+];
+
 class _ThemaWaehlenScreenState extends State<ThemaWaehlenScreen> {
   @override
   Widget build(BuildContext context) {
@@ -19,14 +26,33 @@ class _ThemaWaehlenScreenState extends State<ThemaWaehlenScreen> {
           Icon(Icons.menu),
         ],
       ),
-      body: ListView(
+      body: Column(
         children: <Widget>[
           titleCard(context, "Wählen Sie den Themenbereich Ihrer neuen Frage?",
               Colors.white70, 'assets/img/bild_home.jpg'),
-          startButton(context, "Thema wählen", Colors.lime),
+          Container(
+            child: buildDropdownButton(),
+          ),
         ],
       ),
     );
+  }
+
+  DropdownButton<String> buildDropdownButton() {
+    return DropdownButton(
+        value: dropdownStr,
+        style: TextStyle(
+          fontSize: 20,
+          color: Colors.black,
+        ),
+        onChanged: (newValue) {
+          setState(() {
+            dropdownStr = newValue;
+          });
+        },
+        items: themen.map<DropdownMenuItem<String>>((value) {
+          return DropdownMenuItem<String>(value: value, child: Text(value));
+        }).toList());
   }
 }
 
@@ -144,21 +170,4 @@ Widget buildButton(BuildContext context, text, widget) {
     },
     child: Text(text),
   );
-}
-
-class Thema{
-  final String frage;
-  final String antwort;
-
-  Thema(this.frage, this.antwort);
-
-  Thema.fromJson(Map<String, dynamic> json)
-      : frage = json['frage'],
-        antwort = json['antwort'];
-
-  Map<String, dynamic> toJson() =>
-      {
-        'frage': frage,
-        'antwort': antwort,
-      };
 }
