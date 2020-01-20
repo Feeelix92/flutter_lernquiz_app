@@ -3,12 +3,38 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_lernquiz_app/screens/result_screen.dart';
+import 'dart:math';
+
 
 class GetJson extends StatelessWidget {
+
+  String langname;
+  GetJson(this.langname);
+  String assettoload;
+
+  setasset() {
+    if (langname == "Multimediagrundlagen") {
+      assettoload = 'assets/test.json';
+    } else if (langname == "Programmierung 1") {
+      assettoload = 'assets/test.json';
+    } else if (langname == "Programmierung 2") {
+      assettoload = 'assets/test.json';
+    } else if (langname == "Mediendidaktik und e-Learning") {
+      assettoload = 'assets/test.json';
+    } else {
+      assettoload = 'assets/test.json';
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    // this function is called before the build so that
+    // the string assettonload is available to the DefaultAssetBuilder
+    setasset();
+    // and now we return the FutureBuilder to load and decode JSON
     return FutureBuilder(
-      future: DefaultAssetBundle.of(context).loadString('assets/test.json'),
+      future: DefaultAssetBundle.of(context).loadString(assettoload, cache: true),
       builder: (context, snapshot) {
         List myInput = json.decode(snapshot.data.toString());
         if (myInput == null) {
@@ -50,6 +76,7 @@ class _QuizPageState extends State<QuizPage> {
 
   //Index um die jeweilige Frage bzw. Antowort aus dem Json zu laden.
   int index = 1;
+  int randomArrayCounter = 1;
 
   //Default Wert für die Zeit je Fragek
   int timer = 30;
@@ -64,10 +91,38 @@ class _QuizPageState extends State<QuizPage> {
     "d": Colors.lightBlueAccent,
   };
 
+  bool canceltimer = false;
+
+//     var randomArray;
+//     var distinctIds = [];
+//     var rand = new Random();
+//       for (int i = 0; i <10; i++) {
+//       distinctIds.add(rand.nextInt(10));
+//         random_array = distinctIds.toSet().toList();
+//         if(random_array.length < 10){
+//           continue;
+//         }else{
+//           break;
+//         }
+//       }
+//     print(random_array);
+
+  var randomArray = [1, 6, 7, 2, 4, 10, 8, 3, 9, 5];
+
+
+  // overriding the initstate function to start timer as this screen is created
   @override
   void initState() {
     startTimer();
     super.initState();
+  }
+
+  // overriding the setstate function to be called only if mounted
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
   }
 
   //Funktion wechselt automatisch zur nächsten Frage wenn die Zeit abgelaufen ist.
@@ -94,10 +149,10 @@ class _QuizPageState extends State<QuizPage> {
     cancelTimer = false;
     timer = 30;
     setState(() {
-      if (index < 10) {
-        index++;
+      if (randomArrayCounter < 10) {
+        index = randomArray[randomArrayCounter];
+        randomArrayCounter++;
       } else {
-        cancelTimer = true;
         Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) => ResultPageScreen(
               punkte: punkte,
@@ -116,7 +171,7 @@ class _QuizPageState extends State<QuizPage> {
   //Funktion prüft ob die ausgewählte Antwort korrekt ist.
   void checkanswer(option) {
     anzahlFragen++;
-    if (myInput[2]["1"] == myInput[1]["1"][option]) {
+    if (myInput[2][index.toString()] == myInput[1][index.toString()][option]) {
       punkte = punkte + 5;
       richtigeAntworten++;
       colortoshow = right;
@@ -127,7 +182,7 @@ class _QuizPageState extends State<QuizPage> {
       btnColor[option] = colortoshow;
       cancelTimer = true;
     });
-    Timer(Duration(seconds: 2), nextQuestion);
+    Timer(Duration(seconds: 1), nextQuestion);
   }
 
   //Antwort Buttons

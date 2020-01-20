@@ -21,37 +21,42 @@ class _ThemenScreenState extends State<ThemenScreen> {
       ),
       body: ListView(
         children: <Widget>[
-          themenCard(context, "Multimediagrundlagen", Colors.lime,
-              'assets/img/bild_home.jpg'),
           themenCard(
             context,
-            "Programmierung 1",
-            Colors.indigo,
-            'assets/img/bild_home.jpg',
+            "test",
+            "Multimediagrundlagen",
+            Colors.lime,
+            images[0],
           ),
           themenCard(
             context,
+            "test",
+            "Programmierung 1",
+            Colors.indigo,
+            images[0],
+          ),
+          themenCard(
+            context,
+            "test",
             "Programmierung 2",
             Colors.orange,
-            'assets/img/bild_home.jpg',
+            images[0],
           ),
         ],
       ),
-
-//      body: Center(
-//        child: Column(
-//          children: <Widget>[
-//            buildButton(context, "Multimediagrundlagen", HomeScreen()),
-//            buildButton(context, "Programmierung 1", HomeScreen()),
-//            buildButton(context, "Programmierung 2", HomeScreen()),
-//          ],
-//        ),
-//      ),
     );
   }
 }
 
-Widget themenCard(context, title, backgroundColor, imagePath) {
+List<String> images = [
+  'assets/img/bild_home.jpg',
+  'assets/img/bild_home.jpg',
+  'assets/img/bild_home.jpg',
+  'assets/img/bild_home.jpg',
+  'assets/img/bild_home.jpg',
+];
+
+Widget themenCard(context, langname, title, backgroundColor, imagePath) {
   return Padding(
     padding: EdgeInsets.all(
       20.0,
@@ -59,7 +64,7 @@ Widget themenCard(context, title, backgroundColor, imagePath) {
     child: InkWell(
       onTap: () {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => GetJson(),
+          builder: (context) => GetJson(langname),
         ));
       },
       child: Material(

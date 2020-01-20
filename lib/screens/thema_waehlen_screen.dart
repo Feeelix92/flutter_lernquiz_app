@@ -145,3 +145,20 @@ Widget buildButton(BuildContext context, text, widget) {
     child: Text(text),
   );
 }
+
+class Thema{
+  final String frage;
+  final String antwort;
+
+  Thema(this.frage, this.antwort);
+
+  Thema.fromJson(Map<String, dynamic> json)
+      : frage = json['frage'],
+        antwort = json['antwort'];
+
+  Map<String, dynamic> toJson() =>
+      {
+        'frage': frage,
+        'antwort': antwort,
+      };
+}
