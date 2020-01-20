@@ -33,6 +33,9 @@ class _ThemaWaehlenScreenState extends State<ThemaWaehlenScreen> {
           Container(
             child: buildDropdownButton(),
           ),
+          Container(
+            child: startButton(context, "weiter", Colors.lime),
+          ),
         ],
       ),
     );
@@ -121,7 +124,7 @@ Widget startButton(context, text, backgroundColor) {
       onTap: () {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) =>
-              MyBottomNavigationBar(), //Themenbereich wählen Seite
+              MyBottomNavigationBar(), //Fragen erstellen Seite
         ));
       },
       child: Material(
