@@ -8,7 +8,7 @@ class ThemaWaehlenScreen extends StatefulWidget {
   _ThemaWaehlenScreenState createState() => _ThemaWaehlenScreenState();
 }
 
-String dropdownStr = "Multimediagrundlagen";
+String dropdownStr = "Multimediagrundlagen"; //neues Thema anlegen auch also Option -- müsste aus Json in Json gespeichert werden
 List<String> themen = [
   "Multimediagrundlagen",
   "Programmierung 1",

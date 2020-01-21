@@ -41,7 +41,7 @@ class GetJson extends StatelessWidget {
           return Scaffold(
             body: Center(
               child: Text(
-                "Loading",
+                "Datei nicht gefunden",
               ),
             ),
           );
