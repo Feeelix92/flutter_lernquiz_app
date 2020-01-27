@@ -11,6 +11,41 @@ class NeueFragenScreen extends StatefulWidget {
 
 class _NeueFragenScreenState extends State<NeueFragenScreen> {
   @override
+
+  String question;
+  String a;
+  String b;
+  String c;
+  String d;
+
+  final questionController = TextEditingController();
+  final aController = TextEditingController();
+  final bController = TextEditingController();
+  final cController = TextEditingController();
+  final dController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    aController.dispose();
+    bController.dispose();
+    cController.dispose();
+    dController.dispose();
+    questionController.dispose();
+    super.dispose();
+  }
+
+  void saveAnswer(){
+    setState(() {
+      question = questionController.toString();
+      a = aController.toString();
+      b = bController.toString();
+      c = cController.toString();
+      d = dController.toString();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
@@ -28,25 +63,30 @@ class _NeueFragenScreenState extends State<NeueFragenScreen> {
          // titleCard(context, "Wie lautet Ihre\nneue Frage?", Colors.white70,
           //    'assets/img/bild_home.jpg'),
           //Textfeld für Frage
-          buildQuestionField("Hier Ihre Frage eingeben"),
-          buildAnswerField("Richtige Antwortmöglichkeit A"),
-          buildAnswerField("Falsche Antwortmöglichkeit B"),
-          buildAnswerField("Falsche Antwortmöglichkeit C"),
-          buildAnswerField("Falsche Antwortmöglichkeit D"),
-
+          buildQuestionField("Hier Ihre Frage eingeben", questionController),
+          Text(questionController.text),
+          buildAnswerField("Richtige Antwortmöglichkeit A", aController),
+          Text(aController.text),
+          buildAnswerField("Falsche Antwortmöglichkeit B", bController),
+          Text(bController.text),
+          buildAnswerField("Falsche Antwortmöglichkeit C", cController),
+          Text(cController.text),
+          buildAnswerField("Falsche Antwortmöglichkeit D", dController),
+          Text(dController.text),
           startButton(context, "Speichern & Weiter", Colors.lime), //funktion zum speichern der daten in json
         ],
       ),
     );
   }
 
-  Container buildAnswerField(text) {
+  Container buildAnswerField(text, controller) {
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: 5.0,
         horizontal: 20.0,
       ),
       child: TextFormField(
+        controller: controller,
         style: TextStyle(
           fontSize: 15,
         ),
@@ -55,10 +95,11 @@ class _NeueFragenScreenState extends State<NeueFragenScreen> {
     );
   }
 
-  Container buildQuestionField(text) {
+  Container buildQuestionField(text, controller) {
     return Container(
       padding: EdgeInsets.all(20.0),
       child: TextFormField(
+        controller: controller,
         style: TextStyle(
           fontSize: 20,
         ),
@@ -125,17 +166,18 @@ Widget titleCard(context, title, backgroundColor, imagePath) {
 }
 
 Widget startButton(context, text, backgroundColor) {
-  return Padding(
+   return Padding(
     padding: EdgeInsets.all(
       20.0,
     ),
     child: InkWell(
-      onTap: () {
+      onTap: (){
         Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) =>
               MyBottomNavigationBar(), //Themenbereich wählen Seite
         ));
       },
+
       child: Material(
         color: backgroundColor,
         elevation: 10.0,
