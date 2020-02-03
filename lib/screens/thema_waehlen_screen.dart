@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_lernquiz_app/main.dart';
+import 'package:flutter_lernquiz_app/screens/neue_fragen_form_screen.dart';
 import 'package:flutter_lernquiz_app/screens/neue_fragen_screen.dart';
 
 class ThemaWaehlenScreen extends StatefulWidget {
@@ -125,7 +126,8 @@ Widget startButton(context, text, backgroundColor) {
       onTap: () {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (context) =>
-              NeueFragenScreen(), //Fragen erstellen Seite
+//              NeueFragenScreen(), //Fragen erstellen Seite
+              NeueFragenFormScreen(), //Fragen erstellen Seite
         ));
       },
       child: Material(
