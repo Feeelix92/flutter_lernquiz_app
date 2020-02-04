@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_lernquiz_app/main.dart';
+import 'package:flutter_lernquiz_app/model/antworten.dart';
+import 'package:flutter_lernquiz_app/model/themen.dart';
 import 'package:flutter_lernquiz_app/screens/thema_waehlen_screen.dart';
 
 class NeueFragenScreen extends StatefulWidget {
@@ -71,8 +75,9 @@ class _NeueFragenScreenState extends State<NeueFragenScreen> {
               child: buildDropdownButton(),
             ),
           ),
-          startButton(context, "Speichern & Weiter", Colors.lime),
-          //funktion zum speichern der daten in json
+//          startButton(context, "Speichern & Weiter", Colors.lime),
+//          //funktion zum speichern der daten in json
+//          buildButton(context, "start", aController, bController, cController, dController, questionController)
         ],
       ),
     );
@@ -98,35 +103,40 @@ class _NeueFragenScreenState extends State<NeueFragenScreen> {
     super.dispose();
   }
 
-  void saveAnswer() {
-    setState(() {
-      Map<String, dynamic> answers = {
-        "a": aController.toString(),
-        "b": bController.toString(),
-        "c": cController.toString(),
-        "d": dController.toString(),
-      };
-
-        if(dropdownStr == "A"){
-          richtigeAntwort = aController.text.toString();
-        }else if(dropdownStr == "B"){
-          richtigeAntwort = bController.text.toString();
-        }else if(dropdownStr == "C"){
-          richtigeAntwort = cController.text.toString();
-        }else{
-          richtigeAntwort = dController.text.toString();
-        }
-
-      Map<String, dynamic> theme = {
-        "themenId": "",
-        "themenName": "",
-        "fragenId": "",
-        "fragenName": questionController,
-        "antworten": answers,
-        "antwortR": richtigeAntwort,
-      };
-    });
-  }
+//  void saveAnswer() {
+//    setState(() {
+////      Map<String, dynamic> answers = {
+////        "a": aController.text.toString(),
+////        "b": bController.text.toString(),
+////        "c": cController.text.toString(),
+////        "d": dController.text.toString(),
+////      };
+//
+//        if(dropdownStr == "A"){
+//          richtigeAntwort = aController.text.toString();
+//        }else if(dropdownStr == "B"){
+//          richtigeAntwort = bController.text.toString();
+//        }else if(dropdownStr == "C"){
+//          richtigeAntwort = cController.text.toString();
+//        }else{
+//          richtigeAntwort = dController.text.toString();
+//        }
+//
+////      Map<String, dynamic> theme = {
+////        "themenId": "",
+////        "themenName": "",
+////        "fragenId": "",
+////        "fragenName": questionController,
+////        "antworten": answers,
+////        "antwortR": richtigeAntwort,
+////      };
+//
+//      Antworten antworten = Antworten(aController.text.toString(), bController.text.toString(), cController.text.toString(), dController.text.toString());
+//      Themen themen = Themen(1, "", 1, questionController.text.toString(), antworten, richtigeAntwort);
+//      print(themen.toJson());
+//
+//    });
+//  }
 
   DropdownButton<String> buildDropdownButton() {
     return DropdownButton(
@@ -277,16 +287,35 @@ Widget startButton(context, text, backgroundColor) {
   );
 }
 
-Widget buildButton(BuildContext context, text, widget) {
-  return RaisedButton(
-    onPressed: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => widget,
-        ),
-      );
-    },
-    child: Text(text),
-  );
-}
+//Widget buildButton(BuildContext context, text, aController, bController, cController, dController, questionController) {
+//  return RaisedButton(
+//    onPressed: () => saveAnswer(aController, bController, cController, dController, questionController),
+////    onPressed: () {
+////      Navigator.push(
+////        context,
+////        MaterialPageRoute(
+////          builder: (context) => widget,
+////        ),
+////      );
+////    },
+//    child: Text(text),
+//  );
+//}
+//
+//void saveAnswer(aController, bController, cController, dController, questionController) {
+//  if(dropdownStr == "A"){
+//          richtigeAntwort = aController.text.toString();
+//        }else if(dropdownStr == "B"){
+//          richtigeAntwort = bController.text.toString();
+//        }else if(dropdownStr == "C"){
+//          richtigeAntwort = cController.text.toString();
+//        }else{
+//          richtigeAntwort = dController.text.toString();
+//        }
+//
+//  Antworten antworten = Antworten(aController.text.toString(), bController.text.toString(), cController.text.toString(), dController.text.toString());
+//  Themen themen = Themen(1, "", 1, questionController.text.toString(), antworten, richtigeAntwort);
+//  print(themen.toJson());
+//  String json = jsonEncode(themen);
+//  print(json);
+//}

@@ -1,8 +1,11 @@
+//https://codingwithjoe.com/building-forms-with-flutter/
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_lernquiz_app/main.dart';
+import 'package:flutter_lernquiz_app/model/fragenService.dart';
 import 'package:flutter_lernquiz_app/model/neueFragen.dart';
-//import 'package:flutter_lernquiz_app/lib/model/neueFragen.dart'; //funktoniert leider noch nicht
 
 Fragen newFragen = new Fragen();
 
@@ -12,8 +15,36 @@ class NeueFragenFormScreen extends StatefulWidget {
 }
 
 class _NeueFragenFormScreenState extends State<NeueFragenFormScreen> {
-  //@override
+  void showMessage(String message, [MaterialColor color = Colors.red]) {
+    _scaffoldKey.currentState.showSnackBar(
+        new SnackBar(backgroundColor: color, content: new Text(message)));
+  }
 
+  void _submitForm() {
+    final FormState form = _formKey.currentState;
+
+    if (!form.validate()) {
+      showMessage('Form ist nicht gültig! Bitte überarbeiten.');
+    } else {
+      form.save(); //This invokes each onSaved event
+
+      print('Form Speicherung abgerufen, newFragen ist nun aktuell...');
+      print('Thema: ${newFragen.thema}');
+      print('Frage: ${newFragen.frage}');
+      print('Antwort A: ${newFragen.antwortA}');
+      print('Antwort B: ${newFragen.antwortB}');
+      print('Antwort C: ${newFragen.antwortC}');
+      print('Antwort D: ${newFragen.antwortD}');
+      print('Zutreffende Antwort: ${newFragen.richtigeAntwort}');
+      print('========================================');
+      print('Ins Backend einreichen...');
+      var fragenService = new FragenService();
+      fragenService.createContact(newFragen).then((value) => showMessage(
+          'Neue Frage erstellt für: "${value.frage}"!', Colors.lightGreen));
+    }
+  }
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   List<String> _rAntworten = <String>['', 'A', 'B', 'C', 'D'];
   String _rAntwort = '';
@@ -21,6 +52,7 @@ class _NeueFragenFormScreenState extends State<NeueFragenFormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text("Neue Frage einreichen"),
         actions: <Widget>[
@@ -32,54 +64,67 @@ class _NeueFragenFormScreenState extends State<NeueFragenFormScreen> {
         bottom: false,
         child: new Form(
           key: _formKey,
-          autovalidate: true,
-          child: new ListView(
+          autovalidate: false,
+          child: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             children: <Widget>[
-              new TextFormField(
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: 'Geben Sie hier das Thema der Frage ein',
+                  labelText: 'Thema',
+                ),
+                inputFormatters: [LengthLimitingTextInputFormatter(50)],
+                validator: (val) => val.isEmpty ? 'Thema wird benötigt' : null,
+                onSaved: (val) => newFragen.thema = val,
+              ),
+              TextFormField(
                 decoration: const InputDecoration(
                   hintText: 'Geben Sie hier Ihre neue Frage ein',
                   labelText: 'Frage',
                 ),
-//                  inputFormatters: [new LengthLimitingTextInputFormatter(50)], //funktioniert noch nicht
+                inputFormatters: [LengthLimitingTextInputFormatter(50)],
                 validator: (val) => val.isEmpty ? 'Frage wird benötigt' : null,
-//                onSaved: (val) => Fragen.frage = val,
+                onSaved: (val) => newFragen.frage = val,
               ),
-              new TextFormField(
+               TextFormField(
                 decoration: const InputDecoration(
                   hintText: 'Geben Sie hier Ihre erste Antwortmöglichkeit ein',
                   labelText: 'Antwort A',
                 ),
+                inputFormatters: [LengthLimitingTextInputFormatter(50)],
                 validator: (val) =>
                     val.isEmpty ? 'Antwort wird benötigt' : null,
-//                    onSaved: (val) => Fragen.antwortA = val,
+                onSaved: (val) => newFragen.antwortA = val,
               ),
-              new TextFormField(
+               TextFormField(
                 decoration: const InputDecoration(
                   hintText: 'Geben Sie hier Ihre zweite Antwortmöglichkeit ein',
                   labelText: 'Antwort B',
                 ),
+                inputFormatters: [LengthLimitingTextInputFormatter(50)],
                 validator: (val) =>
                     val.isEmpty ? 'Antwort wird benötigt' : null,
-//                    onSaved: (val) => Fragen.antwortB = val,
+                onSaved: (val) => newFragen.antwortB = val,
               ),
               new TextFormField(
                 decoration: const InputDecoration(
                   hintText: 'Geben Sie hier Ihre dritte Antwortmöglichkeit ein',
                   labelText: 'Antwort C',
                 ),
+                inputFormatters: [LengthLimitingTextInputFormatter(50)],
                 validator: (val) =>
                     val.isEmpty ? 'Antwort wird benötigt' : null,
-//                    onSaved: (val) => Fragen.antwortC = val,
+                onSaved: (val) => newFragen.antwortC = val,
               ),
               new TextFormField(
                 decoration: const InputDecoration(
                   hintText: 'Geben Sie hier Ihre vierte Antwortmöglichkeit ein',
                   labelText: 'Antwort D',
                 ),
+                inputFormatters: [LengthLimitingTextInputFormatter(50)],
                 validator: (val) =>
                     val.isEmpty ? 'Antwort wird benötigt' : null,
-//                    onSaved: (val) => Fragen.antwortD = val,
+                onSaved: (val) => newFragen.antwortD = val,
               ),
               new FormField(
                 builder: (FormFieldState state) {
@@ -94,8 +139,7 @@ class _NeueFragenFormScreenState extends State<NeueFragenFormScreen> {
                         isDense: true,
                         onChanged: (String newValue) {
                           setState(() {
-                            newFragen.richtigeAntwort =
-                                newValue; //https://codingwithjoe.com/building-forms-with-flutter/  ab Punkt "Submitting the Form"
+                            newFragen.richtigeAntwort = newValue;
                             _rAntwort = newValue;
                             state.didChange(newValue);
                           });
@@ -116,17 +160,38 @@ class _NeueFragenFormScreenState extends State<NeueFragenFormScreen> {
                       : 'Bitte wählen Sie die zutreffende Antwort';
                 },
               ),
-              new Container(
-                padding: const EdgeInsets.only(left: 40.0, top: 20.0),
-                child: new RaisedButton(
-                  child: const Text('Einreichen'),
-                  onPressed: null,
-                ),
-              ),
-              startButton(context, "Speichern & Weiter", Colors.lime),
+              buildSubmit(),
+//              startButton(context, "zurück zu home", Colors.lime),//vorläufig zurück zu home -- andere Lösung finden
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Container buildSubmit() {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        vertical: 50.0,
+        horizontal: 20.0,
+      ),
+      child: RaisedButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        color: Colors.lime,
+        elevation: 10.0,
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: const Text(
+            'Einreichen',
+            style: TextStyle(
+              fontSize: 25.0,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+        onPressed: _submitForm,
       ),
     );
   }
