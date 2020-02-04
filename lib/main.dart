@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lernquiz_app/screens/home_screen.dart';
 import 'package:flutter_lernquiz_app/screens/loading_screen.dart';
 import 'package:flutter_lernquiz_app/screens/neue_fragen_form_screen.dart';
-import 'package:flutter_lernquiz_app/screens/thema_waehlen_screen.dart';
 import 'package:flutter_lernquiz_app/screens/themen_screen.dart';
 
 void main() => runApp(MyApp());

@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_lernquiz_app/screens/result_screen.dart';
-import 'dart:math';
 
 
+// ignore: must_be_immutable
 class GetJson extends StatelessWidget {
 
   String langname;

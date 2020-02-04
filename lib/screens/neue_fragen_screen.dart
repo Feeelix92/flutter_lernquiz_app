@@ -1,12 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_lernquiz_app/main.dart';
-import 'package:flutter_lernquiz_app/model/antworten.dart';
-import 'package:flutter_lernquiz_app/model/themen.dart';
-import 'package:flutter_lernquiz_app/screens/thema_waehlen_screen.dart';
 
 class NeueFragenScreen extends StatefulWidget {
 
