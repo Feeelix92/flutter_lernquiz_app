@@ -55,9 +55,6 @@ class _NeueFragenFormScreenState extends State<NeueFragenFormScreen> {
       key: _scaffoldKey,
       appBar: AppBar(
         title: Text("Neue Frage einreichen"),
-        actions: <Widget>[
-          Icon(Icons.menu),
-        ],
       ),
       body: new SafeArea(
         top: false,
@@ -68,14 +65,9 @@ class _NeueFragenFormScreenState extends State<NeueFragenFormScreen> {
           child: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             children: <Widget>[
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Geben Sie hier das Thema der Frage ein',
-                  labelText: 'Thema',
-                ),
-                inputFormatters: [LengthLimitingTextInputFormatter(50)],
-                validator: (val) => val.isEmpty ? 'Thema wird benötigt' : null,
-                onSaved: (val) => newFragen.thema = val,
+              buildTextFormField(
+                ltext: "Thema",
+                htext: "Geben Sie hier das Thema der Frage ein",
               ),
               TextFormField(
                 decoration: const InputDecoration(
@@ -86,7 +78,7 @@ class _NeueFragenFormScreenState extends State<NeueFragenFormScreen> {
                 validator: (val) => val.isEmpty ? 'Frage wird benötigt' : null,
                 onSaved: (val) => newFragen.frage = val,
               ),
-               TextFormField(
+              TextFormField(
                 decoration: const InputDecoration(
                   hintText: 'Geben Sie hier Ihre erste Antwortmöglichkeit ein',
                   labelText: 'Antwort A',
@@ -96,7 +88,7 @@ class _NeueFragenFormScreenState extends State<NeueFragenFormScreen> {
                     val.isEmpty ? 'Antwort wird benötigt' : null,
                 onSaved: (val) => newFragen.antwortA = val,
               ),
-               TextFormField(
+              TextFormField(
                 decoration: const InputDecoration(
                   hintText: 'Geben Sie hier Ihre zweite Antwortmöglichkeit ein',
                   labelText: 'Antwort B',
@@ -166,6 +158,18 @@ class _NeueFragenFormScreenState extends State<NeueFragenFormScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  TextFormField buildTextFormField({String htext, String ltext}) {
+    return TextFormField(
+      decoration: InputDecoration(
+        hintText: htext,
+        labelText: ltext,
+      ),
+      inputFormatters: [LengthLimitingTextInputFormatter(50)],
+      validator: (val) => val.isEmpty ? 'Thema wird benötigt' : null,
+      onSaved: (val) => newFragen.thema = val,
     );
   }
 

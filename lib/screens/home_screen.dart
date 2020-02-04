@@ -11,22 +11,23 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Home"),
-        actions: <Widget>[
-          Icon(Icons.menu),
-        ],
       ),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            Image.asset('assets/img/bild_home.jpg'),
-            buildHeader(
-              "Herzlich Willkommen \nin der Quiz App!",
+      body: ListView(
+        children: <Widget>[
+          Center(
+            child: Column(
+              children: <Widget>[
+                Image.asset('assets/img/bild_home.jpg'),
+                buildHeader(
+                  "Herzlich Willkommen \nin der Quiz App!",
+                ),
+                buildText(
+                  "Hier können Sie die für Sie prüfungsrelevante Themen erlernen.",
+                ),
+              ],
             ),
-            buildText(
-              "Hier können Sie prüfungsrelevante Themen lernen.",
-               ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

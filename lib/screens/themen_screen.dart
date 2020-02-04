@@ -15,9 +15,6 @@ class _ThemenScreenState extends State<ThemenScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Themen"),
-        actions: <Widget>[
-          Icon(Icons.menu),
-        ],
       ),
       body: ListView(
         children: <Widget>[
@@ -32,7 +29,7 @@ class _ThemenScreenState extends State<ThemenScreen> {
             context,
             "test",
             "Programmierung 1",
-            Colors.indigo,
+            Colors.lightBlueAccent,
             images[0],
           ),
           themenCard(

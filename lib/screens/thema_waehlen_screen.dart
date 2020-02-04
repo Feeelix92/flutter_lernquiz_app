@@ -22,9 +22,6 @@ class _ThemaWaehlenScreenState extends State<ThemaWaehlenScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Thema wählen"),
-        actions: <Widget>[
-          Icon(Icons.menu),
-        ],
       ),
       body: Column(
         children: <Widget>[

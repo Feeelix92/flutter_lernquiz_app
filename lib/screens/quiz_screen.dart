@@ -67,7 +67,7 @@ class _QuizPageState extends State<QuizPage> {
 
   _QuizPageState(this.myInput);
 
-  Color colortoshow = Colors.blue;
+  Color colortoshow = Colors.lightBlue;
   Color right = Colors.lime;
   Color wrong = Colors.red;
   int punkte = 0;
