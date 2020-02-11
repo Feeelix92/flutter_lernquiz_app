@@ -1,0 +1,152 @@
+[
+   {
+      "themenId": 1,
+      "themenName": "Multimediagrundlagen",
+      "fragenId": 1,
+      "fragenName": "Welche Sprache benutzt man um HTML-Dateien zu stylen?",
+      "antworten": [
+         {
+            "a": "CSS",
+            "b": "C++",
+            "c": "Java",
+            "d": "JavaScript"
+         }
+      ],
+      "antwortR": "CSS"
+   },
+   {
+      "themenId": 1,
+      "themenName": "Multimediagrundlagen",
+      "fragenId": 2,
+      "fragenName": "Wie rechnet man das additive Modell in ein subtraktives Modell um?",
+      "antworten": [
+         {
+            "a": "C=R-1, M=G-1, Y=B-1",
+            "b": "C=1/R, M=1/G, Y=1/B",
+            "c": "C=1+R, M=1+G, Y=1+B",
+            "d": "C=1-R, M=1-G, Y=1-B"
+         }
+      ],
+      "antwortR": "C=1-R, M=1-G, Y=1-B"
+   },
+   {
+      "themenId": 1,
+      "themenName": "Multimediagrundlagen",
+      "fragenId": 3,
+      "fragenName": "Welche Basisstruktur hat ein Bild?",
+      "antworten": [
+         {
+            "a": "1-dimensional angeordnete Pixelfelder",
+            "b": "2-dimensional angeordnete Pixelfelder",
+            "c": "3-dimensional angeordnete Pixelfelder",
+            "d": "4-dimensional angeordnete Pixelfelder"
+         }
+      ],
+      "antwortR": "2-dimensional angeordnete Pixelfelder"
+   },
+   {
+      "themenId": 1,
+      "themenName": "Multimediagrundlagen",
+      "fragenId": 4,
+      "fragenName": "Welche Farbe liegt der additive Farbmischung zu Grunde?",
+      "antworten": [
+         {
+            "a": "gelb",
+            "b": "weiß",
+            "c": "schwarz",
+            "d": "blau"
+         }
+      ],
+      "antwortR": "schwarz"
+   },
+   {
+      "themenId": 1,
+      "themenName": "Multimediagrundlagen",
+      "fragenId": 5,
+      "fragenName": "Welche Eigenschaften hat ein Outline-Font nicht?",
+      "antworten": [
+         {
+            "a": "Auflösungsunabhängig",
+            "b": "schlecht skalierbar",
+            "c": "braucht nur wenig Speicher",
+            "d": "Schriftattribute werden seperat gespeichert"
+         }
+      ],
+      "antwortR": "schlecht skalierbar"
+   },
+   {
+      "themenId": 1,
+      "themenName": "Multimediagrundlagen",
+      "fragenId": 6,
+      "fragenName": "Wie legt man in HTML einen Hyperlink fest?",
+      "antworten": [
+         {
+            "a": "<a><href='URI'>text</href></a>",
+            "b": "<a 'URI'>text</a>",
+            "c": "<a href:'URI'>text</a>",
+            "d": "<a href='URI'>text</a>"
+         }
+      ],
+      "antwortR": "<a href='URI'>text</a>"
+   },
+   {
+      "themenId": 1,
+      "themenName": "Multimediagrundlagen",
+      "fragenId": 7,
+      "fragenName": "Wofür steht die Abkürzung DCT?",
+      "antworten": [
+         {
+            "a": "Diskrete Kosinustransformation",
+            "b": "Dynamische Kosinustransformation",
+            "c": "Direkte Kosinustransformation",
+            "d": "Dezente Kosinustransformation"
+         }
+      ],
+      "antwortR": "Diskrete Kosinustransformation"
+   },
+   {
+      "themenId": 1,
+      "themenName": "Multimediagrundlagen",
+      "fragenId": 8,
+      "fragenName": "Wofür steht die Abkürzung JPEG?",
+      "antworten": [
+         {
+            "a": "Joined Photographic Experts Group",
+            "b": "Joint Photographic Experts Group",
+            "c": "Joined Photographic Experts Gremium",
+            "d": "Joint Photographs Experts Gremium"
+         }
+      ],
+      "antwortR": "Joint Photographic Experts Group"
+   },
+   {
+      "themenId": 1,
+      "themenName": "Multimediagrundlagen",
+      "fragenId": 9,
+      "fragenName": "Aus welchen Farben besteht RGB?",
+      "antworten": [
+         {
+            "a": "Rot, Grün, Braun",
+            "b": "Rot, Gelb, Blau",
+            "c": "Rosa, Grün, Blau",
+            "d": "Rot, Grün, Blau"
+         }
+      ],
+      "antwortR": "Rot, Grün, Blau"
+   },
+   {
+      "themenId": 1,
+      "themenName": "Multimediagrundlagen",
+      "fragenId": 10,
+      "fragenName": "Welchen Wert bestimmt das K in CMYK?",
+      "antworten": [
+         {
+            "a": "Kontrast",
+            "b": "Transparenz",
+            "c": "Schwarz",
+            "d": "Helligkeit"
+         }
+      ],
+      "antwortR": "Schwarz"
+   }
+]

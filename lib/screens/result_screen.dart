@@ -54,10 +54,10 @@ class _ResultPageScreenState extends State<ResultPageScreen> {
           "Ergebnis",
         ),
       ),
-      body: ListView(
+      body: Column(
         children: <Widget>[
           Expanded(
-            flex: 9,
+            flex: 8,
             child: Material(
               child: Container(
                 child: Column(

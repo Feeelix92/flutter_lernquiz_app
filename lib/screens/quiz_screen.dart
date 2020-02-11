@@ -4,17 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_lernquiz_app/screens/result_screen.dart';
 
-
 // ignore: must_be_immutable
 class GetJson extends StatelessWidget {
-
   String langname;
+
   GetJson(this.langname);
+
   String assettoload;
 
   setasset() {
     if (langname == "Multimediagrundlagen") {
       assettoload = 'assets/test.json';
+//      assettoload = 'assets/mmg_quiz.json';
     } else if (langname == "Programmierung 1") {
       assettoload = 'assets/test.json';
     } else if (langname == "Programmierung 2") {
@@ -26,7 +27,6 @@ class GetJson extends StatelessWidget {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     // this function is called before the build so that
@@ -34,7 +34,8 @@ class GetJson extends StatelessWidget {
     setasset();
     // and now we return the FutureBuilder to load and decode JSON
     return FutureBuilder(
-      future: DefaultAssetBundle.of(context).loadString(assettoload, cache: true),
+      future:
+          DefaultAssetBundle.of(context).loadString(assettoload, cache: true),
       builder: (context, snapshot) {
         List myInput = json.decode(snapshot.data.toString());
         if (myInput == null) {
@@ -54,7 +55,7 @@ class GetJson extends StatelessWidget {
 }
 
 class QuizPage extends StatefulWidget {
-  final myInput;
+  var myInput;
 
   QuizPage({key, this.myInput}) : super(key: key);
 
@@ -73,14 +74,15 @@ class _QuizPageState extends State<QuizPage> {
   int punkte = 0;
   int anzahlFragen = 0;
   int richtigeAntworten = 0;
+  var _click = false;
 
-  //Index um die jeweilige Frage bzw. Antowort aus dem Json zu laden.
+  //Index um die jeweilige Frage bzw. Antwort aus dem Json zu laden.
   int index = 1;
   int randomArrayCounter = 1;
 
-  //Default Wert für die Zeit je Fragek
-  int timer = 30;
-  String showTimer = "30";
+  //Default Wert für die Zeit je Frage
+  int timer = 20;
+  String showTimer = "20";
   bool cancelTimer = false;
 
   //Ausgangsfarbe der Antwort Buttons
@@ -90,8 +92,6 @@ class _QuizPageState extends State<QuizPage> {
     "c": Colors.lightBlueAccent,
     "d": Colors.lightBlueAccent,
   };
-
-  bool canceltimer = false;
 
 //     var randomArray;
 //     var distinctIds = [];
@@ -108,7 +108,6 @@ class _QuizPageState extends State<QuizPage> {
 //     print(random_array);
 
   var randomArray = [1, 6, 7, 2, 4, 10, 8, 3, 9, 5];
-
 
   // overriding the initstate function to start timer as this screen is created
   @override
@@ -133,6 +132,7 @@ class _QuizPageState extends State<QuizPage> {
         if (timer < 1) {
           time.cancel();
           nextQuestion();
+          anzahlFragen++;
         } else if (cancelTimer == true) {
           time.cancel();
         } else {
@@ -146,8 +146,9 @@ class _QuizPageState extends State<QuizPage> {
   //Funktion ändert den Fragenindex bzw. wechselt zur nächsten Frage
   //setzt den Timer und die Button Farben für jede Frage zurück.
   void nextQuestion() {
+    _click = false;
     cancelTimer = false;
-    timer = 30;
+    timer = 20;
     setState(() {
       if (randomArrayCounter < 10) {
         index = randomArray[randomArrayCounter];
@@ -196,13 +197,19 @@ class _QuizPageState extends State<QuizPage> {
         height: 50.0,
         width: 300.0,
         child: MaterialButton(
-          onPressed: () => checkanswer(option),
+          onPressed: () async {
+            if (_click == false) {
+              _click = true;
+              checkanswer(option);
+            }
+          },
           child: Text(
             myInput[1][index.toString()][option],
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 18.0,
             ),
-            maxLines: 1,
+            maxLines: 2,
           ),
           color: btnColor[option],
         ),
@@ -249,11 +256,14 @@ class _QuizPageState extends State<QuizPage> {
               flex: 2,
               child: Container(
                 padding: EdgeInsets.all(15.0),
-                alignment: Alignment.bottomLeft,
+                alignment: Alignment.bottomCenter,
                 child: Text(
+                  "Frage " + index.toString() + ": \n" +
                   myInput[0][index.toString()],
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
+
                   ),
                 ),
               ),
