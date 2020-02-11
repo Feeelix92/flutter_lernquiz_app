@@ -66,57 +66,22 @@ class _NeueFragenFormScreenState extends State<NeueFragenFormScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             children: <Widget>[
               buildTextFormField(
-                ltext: "Thema",
-                htext: "Geben Sie hier das Thema der Frage ein",
+                'Thema', 'Geben Sie hier das Thema der Frage ein', 'Thema wird benötigt', newFragen.thema
               ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Geben Sie hier Ihre neue Frage ein',
-                  labelText: 'Frage',
-                ),
-                inputFormatters: [LengthLimitingTextInputFormatter(50)],
-                validator: (val) => val.isEmpty ? 'Frage wird benötigt' : null,
-                onSaved: (val) => newFragen.frage = val,
+              buildTextFormField(
+                'Frage', 'Geben Sie hier Ihre neue Frage ein', 'Frage wird benötigt', newFragen.frage
               ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Geben Sie hier Ihre erste Antwortmöglichkeit ein',
-                  labelText: 'Antwort A',
-                ),
-                inputFormatters: [LengthLimitingTextInputFormatter(50)],
-                validator: (val) =>
-                    val.isEmpty ? 'Antwort wird benötigt' : null,
-                onSaved: (val) => newFragen.antwortA = val,
+              buildTextFormField(
+                'Antowrt A', 'Geben Sie hier Ihre erste Antwortmöglichkeit ein', 'Antwort wird benötigt', newFragen.antwortA
               ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Geben Sie hier Ihre zweite Antwortmöglichkeit ein',
-                  labelText: 'Antwort B',
-                ),
-                inputFormatters: [LengthLimitingTextInputFormatter(50)],
-                validator: (val) =>
-                    val.isEmpty ? 'Antwort wird benötigt' : null,
-                onSaved: (val) => newFragen.antwortB = val,
+              buildTextFormField(
+                'Antowrt B', 'Geben Sie hier Ihre zweite Antwortmöglichkeit ein', 'Antwort wird benötigt', newFragen.antwortB
               ),
-              new TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Geben Sie hier Ihre dritte Antwortmöglichkeit ein',
-                  labelText: 'Antwort C',
-                ),
-                inputFormatters: [LengthLimitingTextInputFormatter(50)],
-                validator: (val) =>
-                    val.isEmpty ? 'Antwort wird benötigt' : null,
-                onSaved: (val) => newFragen.antwortC = val,
+              buildTextFormField(
+                'Antowrt C', 'Geben Sie hier Ihre dritte Antwortmöglichkeit ein', 'Antwort wird benötigt', newFragen.antwortC
               ),
-              new TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Geben Sie hier Ihre vierte Antwortmöglichkeit ein',
-                  labelText: 'Antwort D',
-                ),
-                inputFormatters: [LengthLimitingTextInputFormatter(50)],
-                validator: (val) =>
-                    val.isEmpty ? 'Antwort wird benötigt' : null,
-                onSaved: (val) => newFragen.antwortD = val,
+              buildTextFormField(
+                'Antowrt D', 'Geben Sie hier Ihre vierte Antwortmöglichkeit ein', 'Antwort wird benötigt', newFragen.antwortD
               ),
               new FormField(
                 builder: (FormFieldState state) {
@@ -161,15 +126,15 @@ class _NeueFragenFormScreenState extends State<NeueFragenFormScreen> {
     );
   }
 
-  TextFormField buildTextFormField({String htext, String ltext}) {
+  TextFormField buildTextFormField(htext, ltext, valText, value) {
     return TextFormField(
       decoration: InputDecoration(
         hintText: htext,
         labelText: ltext,
       ),
       inputFormatters: [LengthLimitingTextInputFormatter(50)],
-      validator: (val) => val.isEmpty ? 'Thema wird benötigt' : null,
-      onSaved: (val) => newFragen.thema = val,
+      validator: (val) => val.isEmpty ? valText : null,
+      onSaved: (val) => value = val,
     );
   }
 
