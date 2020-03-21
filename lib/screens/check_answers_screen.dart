@@ -13,7 +13,7 @@ class CheckAnswersPage extends StatelessWidget {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text('Check Answers'),
+        title: Text('Antworten prüfen'),
         elevation: 0,
       ),
       body: Stack(
@@ -40,9 +40,9 @@ class CheckAnswersPage extends StatelessWidget {
   Widget _buildItem(BuildContext context, int index) {
     if(index == questions.length) {
       return RaisedButton(
-        child: Text("Done"),
+        child: Text("Fertig"),
         onPressed: (){
-          Navigator.of(context).popUntil(ModalRoute.withName(Navigator.defaultRouteName));
+          Navigator.pop(context);
         },
       );
     }
@@ -68,7 +68,7 @@ class CheckAnswersPage extends StatelessWidget {
             SizedBox(height: 5.0),
             correct ? Container(): Text.rich(TextSpan(
               children: [
-                TextSpan(text: "Answer: "),
+                TextSpan(text: "Antwort: "),
                 TextSpan(text: HtmlUnescape().convert(question.correctAnswer) , style: TextStyle(
                   fontWeight: FontWeight.w500
                 ))

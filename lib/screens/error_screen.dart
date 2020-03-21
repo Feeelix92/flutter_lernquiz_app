@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 class ErrorPage extends StatelessWidget {
   final String message;
 
-  const ErrorPage({Key key, this.message = "There was an unknown error." }) : super(key: key);
+  const ErrorPage({Key key, this.message = "Ein unbekannter Fehler ist aufgetreten." }) : super(key: key);
 
 
   @override
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text('Error'),
+        title: Text('Fehler'),
         elevation: 0,
       ),
       body: Container(
@@ -42,7 +42,7 @@ class ErrorPage extends StatelessWidget {
                     ),),
                     SizedBox(height: 20.0),
                     RaisedButton(
-                      child: Text("Try Again"),
+                      child: Text("Erneut versuchen"),
                       onPressed: ()=> Navigator.pop(context),
                     )
                   ],

@@ -113,7 +113,7 @@ class _QuizPageState extends State<QuizPage> {
   void _nextSubmit() {
     if(_answers[_currentIndex] == null) {
       _key.currentState.showSnackBar(SnackBar(
-        content: Text("You must select an answer to continue."),
+        content: Text("Sie müssen eine Antwort auswählen um fortzufahren."),
       ));
       return;
     }
@@ -133,17 +133,17 @@ class _QuizPageState extends State<QuizPage> {
       context: context,
       builder: (_) {
         return AlertDialog(
-          content: Text("Are you sure you want to quit the quiz? All your progress will be lost."),
-          title: Text("Warning!"),
+          content: Text("Sind Sie sicher, das Sie das Quiz beenden wollen? Ihr Fortschritt geht verloren."),
+          title: Text("Achtung!"),
           actions: <Widget>[
             FlatButton(
-              child: Text("Yes"),
+              child: Text("Ja"),
               onPressed: (){
                 Navigator.pop(context,true);
               },
             ),
             FlatButton(
-              child: Text("No"),
+              child: Text("Nein"),
               onPressed: (){
                 Navigator.pop(context,false);
               },

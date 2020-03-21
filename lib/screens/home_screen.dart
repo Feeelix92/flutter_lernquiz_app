@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
               "Herzlich Willkommen \nin der Quiz App!",
             ),
             buildText(
-              "Hier können Sie prüfungsrelevante Themen lernen.",
+              "Hier können Sie prüfungsrelevante Inhalte lernen.",
             ),
           ],
         ),
