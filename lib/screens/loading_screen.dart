@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_lernquiz_app/main.dart';
+import '../main.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -21,7 +21,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lime,
+      backgroundColor: Colors.lightGreen,
       body: Center(
         child: Text(
           "Quiz App",

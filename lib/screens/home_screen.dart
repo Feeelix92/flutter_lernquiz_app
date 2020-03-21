@@ -10,24 +10,25 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
-      ),
-      body: ListView(
-        children: <Widget>[
-          Center(
-            child: Column(
-              children: <Widget>[
-                Image.asset('assets/img/bild_home.jpg'),
-                buildHeader(
-                  "Herzlich Willkommen \nin der Quiz App!",
-                ),
-                buildText(
-                  "Hier können Sie die für Sie prüfungsrelevante Themen erlernen.",
-                ),
-              ],
-            ),
+        title: Text(
+          "Home",
+          style: TextStyle(
+            color: Colors.white,
           ),
-        ],
+        ),
+      ),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Image.asset('assets/img/bild_home.jpg'),
+            buildHeader(
+              "Herzlich Willkommen \nin der Quiz App!",
+            ),
+            buildText(
+              "Hier können Sie prüfungsrelevante Themen lernen.",
+            ),
+          ],
+        ),
       ),
     );
   }

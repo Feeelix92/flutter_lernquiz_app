@@ -1,0 +1,104 @@
+{
+  "Multimedia Grundlagen": [
+    {
+      "type": "multiple",
+      "question": "Welche Sprache benutzt man um HTML-Dateien zu stylen?",
+      "correct_answer": "CSS",
+      "incorrect_answers": [
+        "Java",
+        "C++",
+        "JavaScript"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Wie rechnet man das additive Modell in ein subtraktives Modell um?",
+      "correct_answer": "C=1-R, M=1-G, Y=1-B",
+      "incorrect_answers": [
+        "C=R-1, M=G-1, Y=B-1",
+        "C=1/R, M=1/G, Y=1/B",
+        "C=1+R, M=1+G, Y=1+B"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Welche Basisstruktur hat ein Bild?",
+      "correct_answer": "2-dimensional angeordnete Pixelfelder",
+      "incorrect_answers": [
+        "1-dimensional angeordnete Pixelfelder",
+        "3-dimensional angeordnete Pixelfelder",
+        "4-dimensional angeordnete Pixelfelder"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Welche Farbe liegt der additive Farbmischung zu Grunde?",
+      "correct_answer": "schwarz",
+      "incorrect_answers": [
+        "gelb",
+        "weiß",
+        "blau"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Welche Eigenschaften hat ein Outline-Font nicht?",
+      "correct_answer": "schlecht skalierbar",
+      "incorrect_answers": [
+        "Auflösungsunabhängig",
+        "Schriftattribute werden seperat gespeichert",
+        "braucht nur wenig Speicher"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Wie legt man in HTML einen Hyperlink fest?",
+      "correct_answer": "<a href='URI'>text</a>",
+      "incorrect_answers": [
+        "<a><href='URI'>text</href></a>",
+        "<a 'URI'>text</a>",
+        "<a href:'URI'>text</a>"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Wofür steht die Abkürzung DCT?",
+      "correct_answer": "Diskrete Kosinustransformation",
+      "incorrect_answers": [
+        "Dynamische Kosinustransformation",
+        "Direkte Kosinustransformation",
+        "Dezente Kosinustransformation"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Wofür steht die Abkürzung JPEG?",
+      "correct_answer": "Joint Photographic Experts Group",
+      "incorrect_answers": [
+        "Joined Photographic Experts Group",
+        "Joined Photographic Experts Gremium",
+        "Joint Photographs Experts Gremium"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Aus welchen Farben besteht RGB?",
+      "correct_answer": "Rot, Grün, Blau",
+      "incorrect_answers": [
+        "Rot, Gelb, Braun",
+        "Rosa, Gelb, Blau",
+        "Rosa, Grün, Braun"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Welchen Wert bestimmt das K in CMYK?",
+      "correct_answer": "Schwarz",
+      "incorrect_answers": [
+        "Kontrast",
+        "Transparenz",
+        "Helligkeit"
+      ]
+    }
+  ]
+}

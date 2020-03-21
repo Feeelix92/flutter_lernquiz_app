@@ -1,0 +1,22 @@
+{
+  "Multimedia Grundlagen": [
+    {
+      "type": "boolean",
+      "question": "&quot;Minions&quot; was released on the June 10th, 2015.",
+      "correct_answer": "False",
+      "incorrect_answers": [
+        "True"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "What is the name of the supercomputer located in the control room in &quot;Jurassic Park&quot; (1993)?",
+      "correct_answer": "Thinking Machines CM-5",
+      "incorrect_answers": [
+        "Cray X-MP",
+        "Cray XK7",
+        "IBM Blue Gene\/Q"
+      ]
+    }
+  ]
+}
