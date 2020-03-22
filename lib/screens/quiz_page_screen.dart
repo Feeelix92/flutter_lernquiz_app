@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hs_fulda/models/category.dart';
 import 'package:hs_fulda/models/question.dart';
@@ -22,10 +24,40 @@ class _QuizPageState extends State<QuizPage> {
     color: Colors.white
   );
 
+  //Default Wert für die Zeit je Frage
+  int timer = 20;
+  String showTimer = "20";
+  bool cancelTimer = false;
+
   int _currentIndex = 0;
   final Map<int,dynamic> _answers = {};
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
 
+// startet den Timer
+  @override
+  void initState() {
+    startTimer();
+    super.initState();
+  }
+
+  //Funktion wechselt automatisch zur nächsten Frage wenn die Zeit abgelaufen ist.
+  void startTimer() async {
+    const oneSecond = Duration(seconds: 1);
+    Timer.periodic(oneSecond, (time) {
+      setState(() {
+        if (timer < 1) {
+          time.cancel();
+          _nextSubmit();
+          _currentIndex++;
+        } else if (cancelTimer == true) {
+          time.cancel();
+        } else {
+          timer = timer - 1;
+        }
+        showTimer = timer.toString();
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context){
@@ -98,7 +130,7 @@ class _QuizPageState extends State<QuizPage> {
                     child: Container(
                       alignment: Alignment.bottomCenter,
                       child: RaisedButton(
-                        child: Text( _currentIndex == (widget.questions.length - 1) ? "Quiz beenden" : "weiter",
+                        child: Text(_currentIndex == (widget.questions.length - 1) ? "Quiz beenden" : "weiter",
                         ),
                         onPressed: _nextSubmit,
                       ),
@@ -114,6 +146,8 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   void _nextSubmit() {
+    cancelTimer = false;
+    timer = 20;
     if(_answers[_currentIndex] == null) {
       _key.currentState.showSnackBar(SnackBar(
         content: Text("Sie müssen eine Antwort auswählen um fortzufahren."),
@@ -129,6 +163,7 @@ class _QuizPageState extends State<QuizPage> {
         builder: (_) => QuizFinishedPage(questions: widget.questions, answers: _answers)
       ));
     }
+    startTimer();
   }
 
   Future<bool> _onWillPop() async {
