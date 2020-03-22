@@ -4,52 +4,50 @@ import 'package:hs_fulda/models/question.dart';
 
 class CheckAnswersPage extends StatelessWidget {
   final List<Question> questions;
-  final Map<int,dynamic> answers;
+  final Map<int, dynamic> answers;
 
-  const CheckAnswersPage({Key key, @required this.questions, @required this.answers}) : super(key: key);
+  const CheckAnswersPage(
+      {Key key, @required this.questions, @required this.answers})
+      : super(key: key);
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Antworten prüfen',
-          style: TextStyle(color: Colors.white),
+        title: Text(
+          'Antworten prüfen',
         ),
         elevation: 0,
       ),
       body: Stack(
         children: <Widget>[
-      Container(
-      height: double.infinity,
-        width: double.infinity,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [
-                  Theme.of(context).primaryColor,
-                  Theme.of(context).accentColor
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter
+          Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+                Theme.of(context).primaryColor,
+                Theme.of(context).accentColor
+              ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
             ),
-        ),
-      ),
+          ),
           ListView.builder(
             padding: const EdgeInsets.all(16.0),
-            itemCount: questions.length+1,
+            itemCount: questions.length + 1,
             itemBuilder: _buildItem,
-
           )
         ],
       ),
     );
   }
+
   Widget _buildItem(BuildContext context, int index) {
-    if(index == questions.length) {
+    if (index == questions.length) {
       return RaisedButton(
-        child: Text("Fertig",
-          style: TextStyle(color: Colors.white),
+        child: Text(
+          "Fertig",
         ),
-        onPressed: (){
+        onPressed: () {
           Navigator.pop(context);
         },
       );
@@ -62,28 +60,33 @@ class CheckAnswersPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(HtmlUnescape().convert(question.question), style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w500,
-              fontSize: 16.0
-            ),),
+            Text(
+              HtmlUnescape().convert(question.question),
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16.0),
+            ),
             SizedBox(height: 5.0),
-            Text(HtmlUnescape().convert("${answers[index]}"), style: TextStyle(
-              color: correct ? Colors.green : Colors.red,
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold
-            ),),
+            Text(
+              HtmlUnescape().convert("${answers[index]}"),
+              style: TextStyle(
+                  color: correct ? Colors.green : Colors.red,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold),
+            ),
             SizedBox(height: 5.0),
-            correct ? Container(): Text.rich(TextSpan(
-              children: [
-                TextSpan(text: "Antwort: "),
-                TextSpan(text: HtmlUnescape().convert(question.correctAnswer) , style: TextStyle(
-                  fontWeight: FontWeight.w500
-                ))
-              ]
-            ),style: TextStyle(
-              fontSize: 16.0
-            ),)
+            correct
+                ? Container()
+                : Text.rich(
+                    TextSpan(children: [
+                      TextSpan(text: "Antwort: "),
+                      TextSpan(
+                          text: HtmlUnescape().convert(question.correctAnswer),
+                          style: TextStyle(fontWeight: FontWeight.w500))
+                    ]),
+                    style: TextStyle(fontSize: 16.0),
+                  )
           ],
         ),
       ),

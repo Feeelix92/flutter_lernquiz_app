@@ -21,16 +21,22 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightGreen,
-      body: Center(
-        child: Text(
-          "Quiz App",
-          style: TextStyle(
-            fontSize: 50.0,
-            color: Colors.white,
-          ),
-        )
-      ),
+      body: Container(
+          alignment: Alignment(0, 0),
+          height: double.infinity,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [
+            Theme.of(context).primaryColor,
+            Theme.of(context).accentColor
+          ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+          child: Text(
+            "Quiz App",
+            style: TextStyle(
+              fontSize: 50.0,
+              color: Colors.white,
+            ),
+          )),
     );
   }
 }

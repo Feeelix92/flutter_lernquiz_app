@@ -31,7 +31,6 @@ class QuizFinishedPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Ergebnis',
-          style: TextStyle(color: Colors.white),
         ),
         elevation: 0,
       ),
@@ -115,7 +114,6 @@ class QuizFinishedPage extends StatelessWidget {
                     ),
                     color: Theme.of(context).buttonColor,
                     child: Text("Antworten prüfen",
-                      style: TextStyle(color: Colors.white),
                     ),
                     onPressed: (){
                       Navigator.of(context).push(MaterialPageRoute(

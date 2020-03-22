@@ -14,10 +14,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.deepPurple,
           accentColor: Colors.pinkAccent,
+          textTheme: TextTheme(
+            title: TextStyle(
+                color: Colors.white
+            ),
+            subtitle: TextStyle(
+                color: Colors.white
+            ),
+          ),
           fontFamily: "Montserrat",
-          buttonColor: Colors.teal.withOpacity(0.8),
+          buttonColor: Colors.teal,
           buttonTheme: ButtonThemeData(
-              buttonColor: Colors.teal.withOpacity(0.8),
+              buttonColor: Colors.teal,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),

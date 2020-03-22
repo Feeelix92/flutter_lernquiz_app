@@ -32,9 +32,10 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
       child: Column(
         children: <Widget>[
           Container(
+            alignment: Alignment(0,0),
             width: double.infinity,
             padding: const EdgeInsets.all(16.0),
-            color: Colors.grey.shade300,
+            color: Theme.of(context).primaryColor,
             child: Text(
               widget.category.name,
               style: Theme.of(context).textTheme.title.copyWith(),
@@ -72,7 +73,6 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
               : RaisedButton(
                   child: Text(
                     "Quiz starten",
-                    style: TextStyle(color: Colors.white),
                   ),
                   onPressed: _startQuiz,
                 ),

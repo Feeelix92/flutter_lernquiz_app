@@ -24,9 +24,6 @@ class ThemeSelect extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             'Themen',
-            style: TextStyle(
-              color: Colors.white,
-            ),
           ),
           elevation: 0,
         ),
@@ -92,8 +89,7 @@ class ThemeSelect extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
-      color: Colors.teal,
-      textColor: Colors.white,
+      color: Theme.of(context).buttonColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
