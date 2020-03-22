@@ -12,12 +12,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Quiz App',
       theme: ThemeData(
-          primarySwatch: Colors.lightGreen,
+          primarySwatch: Colors.deepPurple,
           accentColor: Colors.pinkAccent,
           fontFamily: "Montserrat",
-          buttonColor: Colors.blueGrey,
+          buttonColor: Colors.teal.withOpacity(0.8),
           buttonTheme: ButtonThemeData(
-              buttonColor: Colors.lightGreen,
+              buttonColor: Colors.teal.withOpacity(0.8),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),

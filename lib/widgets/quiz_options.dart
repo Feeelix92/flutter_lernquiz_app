@@ -27,15 +27,18 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(16.0),
-            color: Colors.grey.shade200,
-            child: Text(widget.category.name, style: Theme.of(context).textTheme.title.copyWith(),),
+            color: Colors.grey.shade300,
+            child: Text(
+              widget.category.name,
+              style: Theme.of(context).textTheme.title.copyWith(),
+            ),
           ),
           SizedBox(height: 10.0),
 //          Text("Wie viele Fragen wollen sie zum Thema beantworten?"),
@@ -64,10 +67,15 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
 //            ),
 //          ),
           SizedBox(height: 20.0),
-          processing ? CircularProgressIndicator() : RaisedButton(
-            child: Text("Start Quiz"),
-            onPressed: _startQuiz,
-          ),
+          processing
+              ? CircularProgressIndicator()
+              : RaisedButton(
+                  child: Text(
+                    "Quiz starten",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: _startQuiz,
+                ),
           SizedBox(height: 20.0),
         ],
       ),
@@ -82,32 +90,45 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
 
   void _startQuiz() async {
     setState(() {
-      processing=true;
+      processing = true;
     });
     try {
-      List<Question> questions =  await getQuestions(context, widget.category);
+      List<Question> questions = await getQuestions(context, widget.category);
       Navigator.pop(context);
-      if(questions.length < 1) {
+      if (questions.length < 1) {
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (_) => ErrorPage(message: "There are not enough questions in the category, with the options you selected.",)
-        ));
+            builder: (_) => ErrorPage(
+                  message:
+                      "There are not enough questions in the category, with the options you selected.",
+                )));
         return;
       }
-      Navigator.push(context, MaterialPageRoute(
-          builder: (_) => QuizPage(questions: questions, category: widget.category,)
-      ));
-    }on SocketException catch (_) {
-      Navigator.pushReplacement(context, MaterialPageRoute(
-          builder: (_) => ErrorPage(message: "Can't reach the servers, \n Please check your internet connection.",)
-      ));
-    } catch(e){
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) => QuizPage(
+                    questions: questions,
+                    category: widget.category,
+                  )));
+    } on SocketException catch (_) {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (_) => ErrorPage(
+                    message:
+                        "Can't reach the servers, \n Please check your internet connection.",
+                  )));
+    } catch (e) {
       print(e.message);
-      Navigator.pushReplacement(context, MaterialPageRoute(
-          builder: (_) => ErrorPage(message: "Unexpected error trying to connect to the API",)
-      ));
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (_) => ErrorPage(
+                    message: "Unexpected error trying to connect to the API",
+                  )));
     }
     setState(() {
-      processing=false;
+      processing = false;
     });
   }
 }

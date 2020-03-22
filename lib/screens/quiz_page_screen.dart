@@ -41,7 +41,11 @@ class _QuizPageState extends State<QuizPage> {
       child: Scaffold(
         key: _key,
         appBar: AppBar(
-          title: Text(widget.category.name),
+          title: Text(widget.category.name,
+            style: TextStyle(
+              color: Colors.white
+            ),
+          ),
           elevation: 0,
         ),
         body: Stack(
@@ -96,7 +100,11 @@ class _QuizPageState extends State<QuizPage> {
                     child: Container(
                       alignment: Alignment.bottomCenter,
                       child: RaisedButton(
-                        child: Text( _currentIndex == (widget.questions.length - 1) ? "Submit" : "Next"),
+                        child: Text( _currentIndex == (widget.questions.length - 1) ? "Quiz beenden" : "weiter",
+                          style: TextStyle(
+                              color: Colors.white
+                          ),
+                        ),
                         onPressed: _nextSubmit,
                       ),
                     ),

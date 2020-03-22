@@ -30,7 +30,9 @@ class QuizFinishedPage extends StatelessWidget {
     
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ergebnis'),
+        title: Text('Ergebnis',
+          style: TextStyle(color: Colors.white),
+        ),
         elevation: 0,
       ),
       body: Container(
@@ -102,7 +104,7 @@ class QuizFinishedPage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    color: Colors.indigo.withOpacity(0.8),
+                    color: Theme.of(context).buttonColor,
                     child: Text("Zurück"),
                     onPressed: () => Navigator.pop(context),
                   ),
@@ -111,8 +113,10 @@ class QuizFinishedPage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    color: Theme.of(context).primaryColor,
-                    child: Text("Antworten prüfen"),
+                    color: Theme.of(context).buttonColor,
+                    child: Text("Antworten prüfen",
+                      style: TextStyle(color: Colors.white),
+                    ),
                     onPressed: (){
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (_) => CheckAnswersPage(questions: questions, answers: answers,)

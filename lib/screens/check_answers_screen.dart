@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:html_unescape/html_unescape.dart';
 import 'package:hs_fulda/models/question.dart';
 
@@ -13,20 +12,27 @@ class CheckAnswersPage extends StatelessWidget {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text('Antworten prüfen'),
+        title: Text('Antworten prüfen',
+          style: TextStyle(color: Colors.white),
+        ),
         elevation: 0,
       ),
       body: Stack(
         children: <Widget>[
-          ClipPath(
-            clipper: WaveClipperTwo(),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor
-              ),
-              height: 200,
+      Container(
+      height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [
+                  Theme.of(context).primaryColor,
+                  Theme.of(context).accentColor
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter
             ),
-          ),
+        ),
+      ),
           ListView.builder(
             padding: const EdgeInsets.all(16.0),
             itemCount: questions.length+1,
@@ -40,7 +46,9 @@ class CheckAnswersPage extends StatelessWidget {
   Widget _buildItem(BuildContext context, int index) {
     if(index == questions.length) {
       return RaisedButton(
-        child: Text("Fertig"),
+        child: Text("Fertig",
+          style: TextStyle(color: Colors.white),
+        ),
         onPressed: (){
           Navigator.pop(context);
         },

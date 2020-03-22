@@ -19,62 +19,68 @@ class ThemeSelect extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Themen',
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-        elevation: 0,
-      ),
-      body: Stack(
-        children: <Widget>[
-          ClipPath(
-            clipper: WaveClipperTwo(),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor
-              ),
-              height: 200,
+        appBar: AppBar(
+          title: Text(
+            'Themen',
+            style: TextStyle(
+              color: Colors.white,
             ),
           ),
-          CustomScrollView(
-            physics: BouncingScrollPhysics(),
-            slivers: <Widget>[
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 8.0),
-                  child: Text("Wählen Sie ein Thema um das Quiz zu starten", style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16.0
-                  ),),
-                ),
-              ),
-              SliverPadding(
-                padding: const EdgeInsets.all(16.0),
-                sliver: SliverGrid(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1,
-                    childAspectRatio: 2.0,
-                    crossAxisSpacing: 10.0,
-                    mainAxisSpacing: 10.0
+          elevation: 0,
+        ),
+        body: Stack(
+          children: <Widget>[
+            ClipPath(
+              clipper: WaveClipperTwo(),
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: [
+                        Theme.of(context).primaryColor,
+                        Theme.of(context).accentColor
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter
                   ),
-                  delegate: SliverChildBuilderDelegate(
-                    _buildCategoryItem,
-                    childCount: categories.length,
-
-                  )
-
                 ),
+                height: 200,
               ),
-            ],
-          ),
-        ],
-      )
-    );
+            ),
+            CustomScrollView(
+              physics: BouncingScrollPhysics(),
+              slivers: <Widget>[
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 8.0),
+                    child: Text(
+                      "Wählen Sie ein Thema um das Quiz zu starten",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16.0),
+                    ),
+                  ),
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.all(16.0),
+                  sliver: SliverGrid(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 1,
+                          childAspectRatio: 2.0,
+                          crossAxisSpacing: 10.0,
+                          mainAxisSpacing: 10.0),
+                      delegate: SliverChildBuilderDelegate(
+                        _buildCategoryItem,
+                        childCount: categories.length,
+                      )),
+                ),
+              ],
+            ),
+          ],
+        ));
   }
 
   Widget _buildCategoryItem(BuildContext context, int index) {
@@ -82,36 +88,36 @@ class ThemeSelect extends StatelessWidget {
     return MaterialButton(
       elevation: 1.0,
       highlightElevation: 1.0,
-      onPressed: () => _categoryPressed(context,category),
+      onPressed: () => _categoryPressed(context, category),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
-      color: Colors.blueGrey,
+      color: Colors.teal,
       textColor: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           AutoSizeText(
             category.name,
-            minFontSize: 10.0,
+            minFontSize: 18.0,
             textAlign: TextAlign.center,
             maxLines: 3,
-            wrapWords: false,),
+            wrapWords: false,
+          ),
         ],
       ),
     );
   }
 
-  _categoryPressed(BuildContext context,Category category) {
+  _categoryPressed(BuildContext context, Category category) {
     showModalBottomSheet(
       context: context,
       builder: (sheetContext) => BottomSheet(
-        builder: (_) => QuizOptionsDialog(category: category,),
-        onClosing: (){},
-
+        builder: (_) => QuizOptionsDialog(
+          category: category,
+        ),
+        onClosing: () {},
       ),
-      
     );
-
   }
 }
