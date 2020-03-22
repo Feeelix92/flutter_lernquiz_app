@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hs_fulda/screens/home_screen.dart';
+import 'package:hs_fulda/screens/question_type_select.dart';
 import 'package:hs_fulda/screens/theme_select_screen.dart';
 import 'package:hs_fulda/screens/loading_screen.dart';
 
@@ -46,7 +47,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
 
   int _currentIndex = 1;
   final List<Widget> _children = [
-    ThemeSelect(),
+    QuestionTypeSelect(),
     HomeScreen(),
     ThemeSelect(),
   ];

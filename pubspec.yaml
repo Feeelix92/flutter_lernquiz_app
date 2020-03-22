@@ -15,6 +15,8 @@ dependencies:
   flutter_custom_clippers: ^0.1.6
   html_unescape: ^1.0.1+2
   auto_size_text: ^2.0.0+2
+  flutter_email_sender: ^2.2.2
+
 
 dev_dependencies:
   flutter_test:
