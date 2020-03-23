@@ -10,4 +10,3 @@ Future<List<Question>> getQuestions(context, Category category) async {
 
   return Question.fromData(questions);
 }
-

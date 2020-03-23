@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
+import 'package:hs_fulda/models/question.dart';
 
 class NewQuestionMailer1x4 extends StatefulWidget {
   @override
@@ -19,19 +21,41 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
     text: '',
   );
 
-  final _bodyController = TextEditingController(
-    text: 'Richtige Antwort: '
-        '\n\nFalsche Antwort: '
-        '\n\nFalsche Antwort: '
-        '\n\nFalsche Antwort: ',
-  );
+  final _rAController = TextEditingController();
+  final _f1AController = TextEditingController();
+  final _f2AController = TextEditingController();
+  final _f3AController = TextEditingController();
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Future<void> send() async {
+    Map<String, dynamic> toJson(type, question, richtigeAntwort,
+            falscheAntwort1, falscheAntwort2, falscheAntwort3) =>
+        {
+          "type": type,
+          "question": question,
+          "correctAnswer": richtigeAntwort,
+          "incorrectAnswers": [
+            falscheAntwort1,
+            falscheAntwort2,
+            falscheAntwort3
+          ],
+        };
+
     final Email email = Email(
-      body: _bodyController.text,
-      subject: _subjectController.text,
+      body: 'richtige Antwort: ' +
+          _rAController.text +
+          '\nfalsche Antworten: \n1. ' +
+          _f1AController.text +
+          '\n2. ' +
+          _f2AController.text +
+          '\n3. ' +
+          _f3AController.text +
+          '       \n\n\nJson: ' +
+          toJson(Type.multiple, _subjectController.text, _rAController.text,
+                  _f1AController.text, _f2AController.text, _f3AController.text)
+              .toString(),
+      subject: '[Neue Frage eingereicht] ' + _subjectController.text,
       recipients: [_recipientController.text],
       isHTML: isHTML,
     );
@@ -97,10 +121,40 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: TextField(
-                    controller: _bodyController,
-                    maxLines: 10,
+                    controller: _rAController,
+                    maxLines: 2,
                     decoration: InputDecoration(
-                        labelText: 'Antwortmöglichkeiten',
+                        labelText: 'richtige Antwortmöglichkeit',
+                        border: OutlineInputBorder()),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: _f1AController,
+                    maxLines: 2,
+                    decoration: InputDecoration(
+                        labelText: '1. falsche Antwortmöglichkeit',
+                        border: OutlineInputBorder()),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: _f2AController,
+                    maxLines: 2,
+                    decoration: InputDecoration(
+                        labelText: '2. falsche Antwortmöglichkeit',
+                        border: OutlineInputBorder()),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: _f3AController,
+                    maxLines: 2,
+                    decoration: InputDecoration(
+                        labelText: '3. falsche Antwortmöglichkeit',
                         border: OutlineInputBorder()),
                   ),
                 ),
