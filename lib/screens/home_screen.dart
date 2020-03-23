@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: Stack(children: <Widget>[
           ClipPath(
-            clipper: WaveClipperTwo(),
+//            clipper: WaveClipperTwo(),
             child: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(colors: [
@@ -29,17 +29,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   Theme.of(context).accentColor
                 ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
               ),
-              height: 200,
+              height: 370,
             ),
           ),
           Container(
             child: Column(
               children: <Widget>[
 //                Image.asset('assets/img/bild_home.jpg'),
+                Image.asset('assets/img/bild_home.jpg'),
                 buildHeader(
                   "Herzlich Willkommen \nin der Quiz App!",
                 ),
-                Image.asset('assets/img/bild_home.jpg'),
                 buildText(
                   "Hier können Sie prüfungsrelevante Inhalte schnell und einfach lernen. Und weil uns noch kein besserer Text eingefallen ist steht das hier so.",
                 ),
