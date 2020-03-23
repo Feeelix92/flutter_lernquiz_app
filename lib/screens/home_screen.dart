@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -9,28 +10,43 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Home",
-          style: TextStyle(
-            color: Colors.white,
+        appBar: AppBar(
+          title: Text(
+            "Home",
+            style: TextStyle(
+              color: Colors.white,
+            ),
           ),
+          elevation: 2,
         ),
-      ),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            Image.asset('assets/img/bild_home.jpg'),
-            buildHeader(
-              "Herzlich Willkommen \nin der Quiz App!",
+        body: Stack(children: <Widget>[
+          ClipPath(
+            clipper: WaveClipperTwo(),
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(colors: [
+                  Theme.of(context).primaryColor,
+                  Theme.of(context).accentColor
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+              ),
+              height: 200,
             ),
-            buildText(
-              "Hier können Sie prüfungsrelevante Inhalte schnell und einfach lernen.",
+          ),
+          Container(
+            child: Column(
+              children: <Widget>[
+//                Image.asset('assets/img/bild_home.jpg'),
+                buildHeader(
+                  "Herzlich Willkommen \nin der Quiz App!",
+                ),
+                Image.asset('assets/img/bild_home.jpg'),
+                buildText(
+                  "Hier können Sie prüfungsrelevante Inhalte schnell und einfach lernen. Und weil uns noch kein besserer Text eingefallen ist steht das hier so.",
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    );
+          ),
+        ]));
   }
 
   Container buildHeader(text) {
@@ -42,6 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
             text,
             textAlign: TextAlign.center,
             style: TextStyle(
+              color: Colors.white,
               fontSize: 25,
               fontWeight: FontWeight.w400,
               //fontStyle: ,

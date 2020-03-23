@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 
+import '../main.dart';
+
 class NewQuestionMailer1x2 extends StatefulWidget {
   @override
   _NewQuestionMailer1x2State createState() => _NewQuestionMailer1x2State();
@@ -126,7 +128,11 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
                       ),
                       color: Theme.of(context).buttonColor,
                       child: Text("Zurück"),
-                      onPressed: () => Navigator.pop(context),
+                      onPressed: (){
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => MyBottomNavigationBar(),
+                        ));
+                      },
                     ),
                     RaisedButton(
                       padding: const EdgeInsets.symmetric(
