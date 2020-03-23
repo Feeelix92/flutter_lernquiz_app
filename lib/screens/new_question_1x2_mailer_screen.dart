@@ -19,17 +19,19 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
     text: '',
   );
 
-  final _bodyController = TextEditingController(
-    text: 'Richtige Antwort: '
-        '\n\nFalsche Antwort: '
-  );
+  final _rAController = TextEditingController();
+  final _f1AController = TextEditingController();
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Future<void> send() async {
+
     final Email email = Email(
-      body: _bodyController.text,
-      subject: _subjectController.text,
+      body: 'richtige Antwort: \n' +
+          _rAController.text +
+          '\nfalsche Antworten: \n' +
+          _f1AController.text ,
+      subject: '[Neue Frage eingereicht] ' + _subjectController.text,
       recipients: [_recipientController.text],
       isHTML: isHTML,
     );
@@ -86,6 +88,7 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
                   padding: EdgeInsets.all(8.0),
                   child: TextField(
                     controller: _subjectController,
+                    maxLines: 3,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Frage',
@@ -95,10 +98,20 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: TextField(
-                    controller: _bodyController,
-                    maxLines: 10,
+                    controller: _rAController,
+                    maxLines: 2,
                     decoration: InputDecoration(
-                        labelText: 'Antwortmöglichkeiten',
+                        labelText: 'richtige Antwortmöglichkeit',
+                        border: OutlineInputBorder()),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: TextField(
+                    controller: _f1AController,
+                    maxLines: 2,
+                    decoration: InputDecoration(
+                        labelText: 'falsche Antwortmöglichkeit',
                         border: OutlineInputBorder()),
                   ),
                 ),

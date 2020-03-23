@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
-import 'package:hs_fulda/models/question.dart';
 
 class NewQuestionMailer1x4 extends StatefulWidget {
   @override
@@ -14,7 +12,7 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
   bool isHTML = false;
 
   final _recipientController = TextEditingController(
-    text: 'momo@hbtech.eu',
+    text: 'momo@hbtech.eu', //e-mail-adresse empfänger
   );
 
   final _subjectController = TextEditingController(
@@ -29,32 +27,16 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Future<void> send() async {
-    Map<String, dynamic> toJson(type, question, richtigeAntwort,
-            falscheAntwort1, falscheAntwort2, falscheAntwort3) =>
-        {
-          "type": type,
-          "question": question,
-          "correctAnswer": richtigeAntwort,
-          "incorrectAnswers": [
-            falscheAntwort1,
-            falscheAntwort2,
-            falscheAntwort3
-          ],
-        };
 
     final Email email = Email(
-      body: 'richtige Antwort: ' +
+      body: 'richtige Antwort: \n' +
           _rAController.text +
           '\nfalsche Antworten: \n1. ' +
           _f1AController.text +
           '\n2. ' +
           _f2AController.text +
           '\n3. ' +
-          _f3AController.text +
-          '       \n\n\nJson: ' +
-          toJson(Type.multiple, _subjectController.text, _rAController.text,
-                  _f1AController.text, _f2AController.text, _f3AController.text)
-              .toString(),
+          _f3AController.text ,
       subject: '[Neue Frage eingereicht] ' + _subjectController.text,
       recipients: [_recipientController.text],
       isHTML: isHTML,
@@ -112,6 +94,7 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
                   padding: EdgeInsets.all(8.0),
                   child: TextField(
                     controller: _subjectController,
+                    maxLines: 3,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Frage',
