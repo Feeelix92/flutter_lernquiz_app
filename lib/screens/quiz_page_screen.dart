@@ -26,7 +26,6 @@ class _QuizPageState extends State<QuizPage> {
   final Map<int,dynamic> _answers = {};
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
 
-
   @override
   Widget build(BuildContext context){
     Question question = widget.questions[_currentIndex];
@@ -98,7 +97,7 @@ class _QuizPageState extends State<QuizPage> {
                     child: Container(
                       alignment: Alignment.bottomCenter,
                       child: RaisedButton(
-                        child: Text( _currentIndex == (widget.questions.length - 1) ? "Quiz beenden" : "weiter",
+                        child: Text(_currentIndex == (widget.questions.length - 1) ? "Quiz beenden" : "weiter",
                         ),
                         onPressed: _nextSubmit,
                       ),
