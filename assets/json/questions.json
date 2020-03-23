@@ -100,5 +100,103 @@
         "Helligkeit"
       ]
     }
+  ],
+  "Mediendidaktik und E-Learning": [
+    {
+      "type": "multiple",
+      "question": "Bei der positiven Verstärkung ...",
+      "correct_answer": "wird eine angenehme Konsequenz erzeugt",
+      "incorrect_answers": [
+        "bleibt eine angenehme Konsequenz aus.",
+        "bleibt eine unangenehme Konsequenz aus.",
+        "wird eine unangenehme Konsequenz erzeugt."
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "An welchen Tieren führte Skinner Experimente durch?",
+      "correct_answer": "Ratten",
+      "incorrect_answers": [
+        "Kaninchen",
+        "Katzen",
+        "Hunde"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Was passiert, wenn man den zuvor konditionierten Reiz nach einer Pause nach der Löschungsphase wieder einsetzt?",
+      "correct_answer": "Eine spontane Erholung der konditionierten Reaktion tritt ein und zeigt sich anfangs stark.",
+      "incorrect_answers": [
+        "Die konditionierte Reaktion könnte schwach auftreten oder auch nicht. Das ist nicht vorhersehbar.",
+        "Eine konditionierte Reaktion tritt auf, allerdings hat sich die Art der Reaktion geändert.",
+        "Die konditionierte Reaktion ist verschwunden und der konditionierte Reiz nicht mehr einsetzbar."
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Wenn intrinsische und extrinsische Motivationen zusammenkommen, nennt man das...",
+      "correct_answer": "Crowding Effect",
+      "incorrect_answers": [
+        "Crew Effect",
+        "Closure Effect",
+        "Crab Effect"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Welche Motivationsausprägungen gibt es im Selbstbewertungsmodell?",
+      "correct_answer": "erfolgszuversichtlich",
+      "incorrect_answers": [
+        "misserfolgsuchend",
+        "erfolglos",
+        "erfolgreich"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Welches der folgenden Bereiche ist KEIN Bereich des Langzeitgedächtnisses?",
+      "correct_answer": "Phonemisches Gedächtnis",
+      "incorrect_answers": [
+        "Semantisches Gedächtnis",
+        "Prozedurales Gedächtnis",
+        "Episodisches Gedächtnis"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Welche Faktoren behindern NICHT direkt eine Aufnahme von Informationen ins Arbeitsgedächtnis?",
+      "correct_answer": "Mangel an Bewegung",
+      "incorrect_answers": [
+        "Laute Geräusche in der Umgebung",
+        "Müdigkeit",
+        "Hohes Alter"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Wie lange hält das sensorische Register Informationen?",
+      "correct_answer": "ca. 0,5 bis 2 Sekunden",
+      "incorrect_answers": [
+        "ca. 5 bis 10 Sekunden",
+        "ca. 1 bis 2 Minuten",
+        "ca. 4 bis 7 Minuten"
+      ]
+    },
+    {
+      "type": "boolean",
+      "question": "Elaborieren bedeutet Information in vorhandenes Wissen einzugliedern. ",
+      "correct_answer": "Richtig",
+      "incorrect_answers": [
+        "Falsch"
+      ]
+    },
+    {
+      "type": "boolean",
+      "question": "Bei einer negativen Bestrafung tritt eine unangenehme Konsequenz auf.",
+      "correct_answer": "Falsch",
+      "incorrect_answers": [
+        "Richtig"
+      ]
+    }
   ]
 }
