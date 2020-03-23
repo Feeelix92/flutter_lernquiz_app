@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
               "Herzlich Willkommen \nin der Quiz App!",
             ),
             buildText(
-              "Hier können Sie prüfungsrelevante Inhalte lernen.",
+              "Hier können Sie prüfungsrelevante Inhalte schnell und einfach lernen.",
             ),
           ],
         ),
@@ -60,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Text(
             text,
             //textAlign: TextAlign.center,
+            textAlign: TextAlign.start,
             style: TextStyle(
               fontSize: 20,
             ),

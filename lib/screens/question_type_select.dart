@@ -78,14 +78,15 @@ class QuestionTypeSelect extends StatelessWidget {
 
   Widget _buildQuestionType(BuildContext context, int index) {
     QuestionType questiontype = questiontypes[index];
+    QuestionType id = questiontypes[index];
     return MaterialButton(
       elevation: 1.0,
       highlightElevation: 1.0,
-      onPressed: () => _questionPressed(context, questiontype),
+      onPressed: () => _questionPressed(context, questiontype, id),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
-      color: Colors.white,
+      color: Theme.of(context).buttonColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -93,20 +94,22 @@ class QuestionTypeSelect extends StatelessWidget {
             questiontype.text,
             minFontSize: 18.0,
             textAlign: TextAlign.center,
-            maxLines: 3,
+            maxLines: 4,
             wrapWords: false,
           ),
         ],
+
       ),
     );
   }
 
-  _questionPressed(BuildContext context, QuestionType questiontype) {
+  _questionPressed(BuildContext context, QuestionType questiontype, QuestionType id) {
     showModalBottomSheet(
       context: context,
       builder: (sheetContext) => BottomSheet(
         builder: (_) => QuestionTypeDialog(
           questiontype: questiontype,
+          questiontypeid: id,
         ),
         onClosing: () {},
       ),
