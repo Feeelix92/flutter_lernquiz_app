@@ -32,7 +32,7 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
       child: Column(
         children: <Widget>[
           Container(
-            alignment: Alignment(0,0),
+            alignment: Alignment(0, 0),
             width: double.infinity,
             padding: const EdgeInsets.all(16.0),
             color: Theme.of(context).primaryColor,
@@ -71,6 +71,11 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
           processing
               ? CircularProgressIndicator()
               : RaisedButton(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12.0, vertical: 15.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
                   child: Text(
                     "Quiz starten",
                   ),

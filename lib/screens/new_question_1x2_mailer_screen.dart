@@ -122,7 +122,7 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
                   children: <Widget>[
                     RaisedButton(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 20.0),
+                          horizontal: 12.0, vertical: 15.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
@@ -136,7 +136,7 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
                     ),
                     RaisedButton(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 20.0),
+                          horizontal: 12.0, vertical: 15.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),

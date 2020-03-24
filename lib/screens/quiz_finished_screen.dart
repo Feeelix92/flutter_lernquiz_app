@@ -99,7 +99,8 @@ class QuizFinishedPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   RaisedButton(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12.0, vertical: 15.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
@@ -108,7 +109,8 @@ class QuizFinishedPage extends StatelessWidget {
                     onPressed: () => Navigator.pop(context),
                   ),
                   RaisedButton(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12.0, vertical: 15.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),

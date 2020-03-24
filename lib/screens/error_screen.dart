@@ -42,6 +42,11 @@ class ErrorPage extends StatelessWidget {
                     ),),
                     SizedBox(height: 20.0),
                     RaisedButton(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12.0, vertical: 15.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
                       child: Text("Erneut versuchen"),
                       onPressed: ()=> Navigator.pop(context),
                     )

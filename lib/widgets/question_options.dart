@@ -69,6 +69,11 @@ class _QuestionTypeDialogState extends State<QuestionTypeDialog> {
           processing
               ? CircularProgressIndicator()
               : RaisedButton(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 12.0, vertical: 15.0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
               child: Text(
                 "Frage erstellen",
               ),

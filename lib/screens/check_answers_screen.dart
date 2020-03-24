@@ -44,6 +44,11 @@ class CheckAnswersPage extends StatelessWidget {
   Widget _buildItem(BuildContext context, int index) {
     if (index == questions.length) {
       return RaisedButton(
+        padding: const EdgeInsets.symmetric(
+            horizontal: 12.0, vertical: 15.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
         child: Text(
           "Fertig",
         ),
