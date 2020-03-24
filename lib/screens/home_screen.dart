@@ -22,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             child: Column(
               children: <Widget>[
-//                Image.asset('assets/img/bild_home.jpg'),
                 Image.asset('assets/img/bild_home.jpg'),
                 Container(
                   decoration: BoxDecoration(
@@ -58,7 +57,6 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.white,
               fontSize: 25,
               fontWeight: FontWeight.w400,
-              //fontStyle: ,
             ),
           ),
         ],
@@ -73,7 +71,6 @@ class _HomeScreenState extends State<HomeScreen> {
         children: <Widget>[
           Text(
             text,
-            //textAlign: TextAlign.center,
             textAlign: TextAlign.start,
             style: TextStyle(
               fontSize: 20,

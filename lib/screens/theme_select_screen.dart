@@ -7,11 +7,11 @@ import 'package:auto_size_text/auto_size_text.dart';
 class ThemeSelect extends StatelessWidget {
   final List<Color> titleColors = [
     Colors.teal,
-    Colors.blueGrey,
     Colors.purple,
     Colors.pink,
     Colors.indigo,
     Colors.lightBlue,
+    Colors.blueGrey,
     Colors.amber,
     Colors.deepOrange,
     Colors.red,
@@ -89,7 +89,6 @@ class ThemeSelect extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
-//      color: Theme.of(context).buttonColor,
       color: titleColors[index],
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

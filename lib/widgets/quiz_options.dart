@@ -37,7 +37,6 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
             width: double.infinity,
             padding: const EdgeInsets.all(16.0),
             color: widget.titleColors[widget.category.id-1],
-//            color: Theme.of(context).primaryColor,
             child: Text(
               widget.category.name,
               style: Theme.of(context).textTheme.title.copyWith(),
@@ -47,11 +46,8 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
           Text("Wie viele Fragen wollen sie zum Thema beantworten?"),
           SizedBox(
             width: double.infinity,
-            child: Wrap(
-              alignment: WrapAlignment.center,
-              runAlignment: WrapAlignment.center,
-              runSpacing: 16.0,
-              spacing: 16.0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 SizedBox(width: 0.0),
                 ActionChip(
@@ -60,6 +56,7 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
                   backgroundColor: _noOfQuestions == 5 ? Colors.pink : Colors.grey.shade500,
                   onPressed: () => _selectNumberOfQuestions(5),
                 ),
+                SizedBox(width: 10.0),
                 ActionChip(
                   label: Text("10"),
                   labelStyle: TextStyle(color: Colors.white),
@@ -69,7 +66,7 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
               ],
             ),
           ),
-          SizedBox(height: 20.0),
+          SizedBox(height: 10.0),
           processing
               ? CircularProgressIndicator()
               : RaisedButton(
@@ -83,7 +80,7 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
                   ),
                   onPressed: _startQuiz,
                 ),
-          SizedBox(height: 20.0),
+          SizedBox(height: 10.0),
         ],
       ),
     );

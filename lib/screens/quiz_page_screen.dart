@@ -92,7 +92,6 @@ class _QuizPageState extends State<QuizPage> {
               clipper: WaveClipperTwo(),
               child: Container(
                 decoration:
-//                    BoxDecoration(color: Theme.of(context).primaryColor),
                     BoxDecoration(color: widget.titleColors[widget.category.id-1]),
                 height: 200,
               ),
@@ -161,7 +160,6 @@ class _QuizPageState extends State<QuizPage> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: Text(
-//                          _currentIndex == (widget.questions.length - 1)
                           _currentIndex == (widget.noOfQuestions - 1)
                               ? "Quiz beenden"
                               : "weiter",
@@ -190,7 +188,6 @@ class _QuizPageState extends State<QuizPage> {
         return;
       }
       if (_currentIndex < ( widget.noOfQuestions - 1)) {
-//      if (_currentIndex < (widget.questions.length - 1)) {
         _currentIndex++;
       } else {
         Navigator.of(context).pushReplacement(MaterialPageRoute(

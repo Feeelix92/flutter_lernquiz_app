@@ -64,7 +64,6 @@ class _QuestionTypeDialogState extends State<QuestionTypeDialog> {
               textAlign: TextAlign.center,
             ),
           ),
-          SizedBox(height: 10.0),
           SizedBox(height: 20.0),
           processing
               ? CircularProgressIndicator()
@@ -80,13 +79,8 @@ class _QuestionTypeDialogState extends State<QuestionTypeDialog> {
 
               onPressed: () {
                 changePage(widget.questiontypeid.id);
-//                Navigator.push(
-//                  context,
-//                  MaterialPageRoute(builder: (context) =>
-//                      NewQuestionMailer1x4()), //if id == 1
-//                );
               }),
-          SizedBox(height: 20.0),
+          SizedBox(height: 10.0),
         ],
       ),
     );
