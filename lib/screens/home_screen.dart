@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -26,9 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
 //                Image.asset('assets/img/bild_home.jpg'),
                 Image.asset('assets/img/bild_home.jpg'),
                 Container(
-                  child: buildHeader(
-                    "Herzlich Willkommen \nin der Quiz App!",
-                  ),
                   decoration: BoxDecoration(
                     gradient: LinearGradient(colors: [
                       Theme.of(context).primaryColor,
@@ -36,6 +32,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
                   ),
                   height: 100,
+                  width: 1000,
+                  child: buildHeader(
+                    "Herzlich Willkommen \nin der Quiz App!",
+                  ),
                 ),
                 buildText(
                   "Hier können Sie prüfungsrelevante Inhalte schnell und einfach lernen. Und weil uns noch kein besserer Text eingefallen ist steht das hier so.",
