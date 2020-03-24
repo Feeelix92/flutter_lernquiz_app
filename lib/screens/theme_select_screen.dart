@@ -5,9 +5,9 @@ import 'package:hs_fulda/widgets/quiz_options.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 class ThemeSelect extends StatelessWidget {
-  final List<Color> tileColors = [
-    Colors.green,
-    Colors.blue,
+  final List<Color> titleColors = [
+    Colors.teal,
+    Colors.blueGrey,
     Colors.purple,
     Colors.pink,
     Colors.indigo,
@@ -89,7 +89,8 @@ class ThemeSelect extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
-      color: Theme.of(context).buttonColor,
+//      color: Theme.of(context).buttonColor,
+      color: titleColors[index],
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[

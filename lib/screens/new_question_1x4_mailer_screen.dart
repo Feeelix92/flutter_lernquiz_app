@@ -29,7 +29,6 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Future<void> send() async {
-
     final Email email = Email(
       body: 'richtige Antwort: \n' +
           _rAController.text +
@@ -38,7 +37,7 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
           '\n2. ' +
           _f2AController.text +
           '\n3. ' +
-          _f3AController.text ,
+          _f3AController.text,
       subject: '[Neue Frage eingereicht] ' + _subjectController.text,
       recipients: [_recipientController.text],
       isHTML: isHTML,
@@ -143,37 +142,40 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
                         border: OutlineInputBorder()),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    RaisedButton(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0, vertical: 15.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      RaisedButton(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12.0, vertical: 15.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        color: Theme.of(context).buttonColor,
+                        child: Text("Zurück"),
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => MyBottomNavigationBar(),
+                          ));
+                        },
                       ),
-                      color: Theme.of(context).buttonColor,
-                      child: Text("Zurück"),
-                      onPressed: (){
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (_) => MyBottomNavigationBar(),
-                        ));
-                      },
-                    ),
-                    RaisedButton(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0, vertical: 15.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                      RaisedButton(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12.0, vertical: 15.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        color: Theme.of(context).buttonColor,
+                        child: Text(
+                          "Frage einreichen",
+                        ),
+                        onPressed: send,
                       ),
-                      color: Theme.of(context).buttonColor,
-                      child: Text(
-                        "Frage einreichen",
-                      ),
-                      onPressed: send,
-                    ),
-                  ],
-                )
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

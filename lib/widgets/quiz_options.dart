@@ -42,31 +42,31 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
             ),
           ),
           SizedBox(height: 10.0),
-//          Text("Wie viele Fragen wollen sie zum Thema beantworten?"),
-//          SizedBox(
-//            width: double.infinity,
-//            child: Wrap(
-//              alignment: WrapAlignment.center,
-//              runAlignment: WrapAlignment.center,
-//              runSpacing: 16.0,
-//              spacing: 16.0,
-//              children: <Widget>[
-//                SizedBox(width: 0.0),
-////                ActionChip(
-////                  label: Text("10"),
-////                  labelStyle: TextStyle(color: Colors.white),
-////                  backgroundColor: _noOfQuestions == 10 ? Colors.pink : Colors.grey.shade500,
-////                  onPressed: () => _selectNumberOfQuestions(10),
-////                ),
-////                ActionChip(
-////                  label: Text("20"),
-////                  labelStyle: TextStyle(color: Colors.white),
-////                  backgroundColor: _noOfQuestions == 20 ? Colors.pink : Colors.grey.shade500,
-////                  onPressed: () => _selectNumberOfQuestions(20),
-////                ),
-//              ],
-//            ),
-//          ),
+          Text("Wie viele Fragen wollen sie zum Thema beantworten?"),
+          SizedBox(
+            width: double.infinity,
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              runAlignment: WrapAlignment.center,
+              runSpacing: 16.0,
+              spacing: 16.0,
+              children: <Widget>[
+                SizedBox(width: 0.0),
+                ActionChip(
+                  label: Text("10"),
+                  labelStyle: TextStyle(color: Colors.white),
+                  backgroundColor: _noOfQuestions == 10 ? Colors.pink : Colors.grey.shade500,
+                  onPressed: () => _selectNumberOfQuestions(10),
+                ),
+                ActionChip(
+                  label: Text("20"),
+                  labelStyle: TextStyle(color: Colors.white),
+                  backgroundColor: _noOfQuestions == 20 ? Colors.pink : Colors.grey.shade500,
+                  onPressed: () => _selectNumberOfQuestions(20),
+                ),
+              ],
+            ),
+          ),
           SizedBox(height: 20.0),
           processing
               ? CircularProgressIndicator()
@@ -104,7 +104,7 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (_) => ErrorPage(
                   message:
-                      "There are not enough questions in the category, with the options you selected.",
+                      "Es gibt im ausgewählten Themenbereich nicht genügend Fragen.",
                 )));
         return;
       }
@@ -121,7 +121,7 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
           MaterialPageRoute(
               builder: (_) => ErrorPage(
                     message:
-                        "Can't reach the servers, \n Please check your internet connection.",
+                        "Server nicht erreichbar, \n Bitte überprüfen Sie Ihre Internetverbindung.",
                   )));
     } catch (e) {
       print(e.message);
@@ -129,7 +129,7 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
           context,
           MaterialPageRoute(
               builder: (_) => ErrorPage(
-                    message: "Unexpected error trying to connect to the API",
+                    message: "Unbekannter Fehler beim Versuch mit der API zu verbinden.",
                   )));
     }
     setState(() {
