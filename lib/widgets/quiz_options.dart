@@ -8,8 +8,9 @@ import 'package:hs_fulda/screens/quiz_page_screen.dart';
 
 class QuizOptionsDialog extends StatefulWidget {
   final Category category;
+  final titleColors;
 
-  const QuizOptionsDialog({Key key, this.category}) : super(key: key);
+  const QuizOptionsDialog({Key key, this.category, this.titleColors}) : super(key: key);
 
   @override
   _QuizOptionsDialogState createState() => _QuizOptionsDialogState();
@@ -35,7 +36,8 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
             alignment: Alignment(0, 0),
             width: double.infinity,
             padding: const EdgeInsets.all(16.0),
-            color: Theme.of(context).primaryColor,
+            color: widget.titleColors[widget.category.id-1],
+//            color: Theme.of(context).primaryColor,
             child: Text(
               widget.category.name,
               style: Theme.of(context).textTheme.title.copyWith(),

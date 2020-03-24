@@ -111,7 +111,7 @@ class ThemeSelect extends StatelessWidget {
       context: context,
       builder: (sheetContext) => BottomSheet(
         builder: (_) => QuizOptionsDialog(
-          category: category,
+          category: category, titleColors: titleColors,
         ),
         onClosing: () {},
       ),
