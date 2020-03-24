@@ -22,7 +22,7 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
   @override
   void initState() {
     super.initState();
-    _noOfQuestions = 10;
+    _noOfQuestions = 5;
     processing = false;
   }
 
@@ -53,16 +53,16 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
               children: <Widget>[
                 SizedBox(width: 0.0),
                 ActionChip(
+                  label: Text("5"),
+                  labelStyle: TextStyle(color: Colors.white),
+                  backgroundColor: _noOfQuestions == 5 ? Colors.pink : Colors.grey.shade500,
+                  onPressed: () => _selectNumberOfQuestions(5),
+                ),
+                ActionChip(
                   label: Text("10"),
                   labelStyle: TextStyle(color: Colors.white),
                   backgroundColor: _noOfQuestions == 10 ? Colors.pink : Colors.grey.shade500,
                   onPressed: () => _selectNumberOfQuestions(10),
-                ),
-                ActionChip(
-                  label: Text("20"),
-                  labelStyle: TextStyle(color: Colors.white),
-                  backgroundColor: _noOfQuestions == 20 ? Colors.pink : Colors.grey.shade500,
-                  onPressed: () => _selectNumberOfQuestions(20),
                 ),
               ],
             ),
@@ -114,6 +114,7 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
               builder: (_) => QuizPage(
                     questions: questions,
                     category: widget.category,
+                    noOfQuestions: _noOfQuestions,
                   )));
     } on SocketException catch (_) {
       Navigator.pushReplacement(

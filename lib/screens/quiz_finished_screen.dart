@@ -6,9 +6,10 @@ import 'package:hs_fulda/screens/check_answers_screen.dart';
 class QuizFinishedPage extends StatelessWidget {
   final List<Question> questions;
   final Map<int, dynamic> answers;
+  final noOfQuestions;
   
   int correctAnswers;
-  QuizFinishedPage({Key key, @required this.questions, @required this.answers}): super(key: key);
+  QuizFinishedPage({Key key, @required this.questions, @required this.answers, this.noOfQuestions}): super(key: key);
 
   @override
   Widget build(BuildContext context){
@@ -58,7 +59,8 @@ class QuizFinishedPage extends StatelessWidget {
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(16.0),
                   title: Text("Gesamtanzahl Fragen", style: titleStyle),
-                  trailing: Text("${questions.length}", style: trailingStyle),
+//                  trailing: Text("${questions.length}", style: trailingStyle),
+                  trailing: Text("${noOfQuestions}", style: trailingStyle),
                 ),
               ),
               SizedBox(height: 10.0),
@@ -69,7 +71,7 @@ class QuizFinishedPage extends StatelessWidget {
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(16.0),
                   title: Text("Score", style: titleStyle),
-                  trailing: Text("${correct/questions.length * 100}%", style: trailingStyle),
+                  trailing: Text("${correct/noOfQuestions * 100}%", style: trailingStyle),
                 ),
               ),
               SizedBox(height: 10.0),
@@ -80,7 +82,7 @@ class QuizFinishedPage extends StatelessWidget {
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(16.0),
                   title: Text("Korrekte Antworten", style: titleStyle),
-                  trailing: Text("$correct/${questions.length}", style: trailingStyle),
+                  trailing: Text("$correct/${noOfQuestions}", style: trailingStyle),
                 ),
               ),
               SizedBox(height: 10.0),
@@ -91,7 +93,7 @@ class QuizFinishedPage extends StatelessWidget {
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(16.0),
                   title: Text("Falsche Antworten", style: titleStyle),
-                  trailing: Text("${questions.length - correct}/${questions.length}", style: trailingStyle),
+                  trailing: Text("${noOfQuestions - correct}/${noOfQuestions}", style: trailingStyle),
                 ),
               ),
               SizedBox(height: 20.0),
@@ -119,7 +121,7 @@ class QuizFinishedPage extends StatelessWidget {
                     ),
                     onPressed: (){
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => CheckAnswersPage(questions: questions, answers: answers,)
+                        builder: (_) => CheckAnswersPage(questions: questions, answers: answers, noOfQuestions: noOfQuestions)
                       ));
                     },
                   ),

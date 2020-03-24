@@ -9,8 +9,9 @@ import 'package:html_unescape/html_unescape.dart';
 class QuizPage extends StatefulWidget {
   final List<Question> questions;
   final Category category;
+  final noOfQuestions;
 
-  const QuizPage({Key key, @required this.questions, this.category})
+  const QuizPage({Key key, @required this.questions, this.category, this.noOfQuestions})
       : super(key: key);
 
   @override
@@ -157,7 +158,8 @@ class _QuizPageState extends State<QuizPage> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: Text(
-                          _currentIndex == (widget.questions.length - 1)
+//                          _currentIndex == (widget.questions.length - 1)
+                          _currentIndex == (widget.noOfQuestions - 1)
                               ? "Quiz beenden"
                               : "weiter",
                         ),
@@ -184,12 +186,13 @@ class _QuizPageState extends State<QuizPage> {
         ));
         return;
       }
-      if (_currentIndex < (widget.questions.length - 1)) {
+      if (_currentIndex < ( widget.noOfQuestions - 1)) {
+//      if (_currentIndex < (widget.questions.length - 1)) {
         _currentIndex++;
       } else {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (_) => QuizFinishedPage(
-                questions: widget.questions, answers: _answers)));
+                questions: widget.questions, answers: _answers, noOfQuestions: widget.noOfQuestions)));
       }
     });
   }

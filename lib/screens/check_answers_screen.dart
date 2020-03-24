@@ -5,9 +5,10 @@ import 'package:hs_fulda/models/question.dart';
 class CheckAnswersPage extends StatelessWidget {
   final List<Question> questions;
   final Map<int, dynamic> answers;
+  final noOfQuestions;
 
   const CheckAnswersPage(
-      {Key key, @required this.questions, @required this.answers})
+      {Key key, @required this.questions, @required this.answers, this.noOfQuestions})
       : super(key: key);
 
   @override
@@ -33,7 +34,7 @@ class CheckAnswersPage extends StatelessWidget {
           ),
           ListView.builder(
             padding: const EdgeInsets.all(16.0),
-            itemCount: questions.length + 1,
+            itemCount: noOfQuestions + 1,
             itemBuilder: _buildItem,
           )
         ],
@@ -42,7 +43,7 @@ class CheckAnswersPage extends StatelessWidget {
   }
 
   Widget _buildItem(BuildContext context, int index) {
-    if (index == questions.length) {
+    if (index == noOfQuestions) {
       return RaisedButton(
         padding: const EdgeInsets.symmetric(
             horizontal: 12.0, vertical: 15.0),
