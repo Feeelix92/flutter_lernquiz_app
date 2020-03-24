@@ -117,6 +117,7 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
                     questions: questions,
                     category: widget.category,
                     noOfQuestions: _noOfQuestions,
+                    titleColors: widget.titleColors,
                   )));
     } on SocketException catch (_) {
       Navigator.pushReplacement(

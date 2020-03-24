@@ -10,8 +10,9 @@ class QuizPage extends StatefulWidget {
   final List<Question> questions;
   final Category category;
   final noOfQuestions;
+  final titleColors;
 
-  const QuizPage({Key key, @required this.questions, this.category, this.noOfQuestions})
+  const QuizPage({Key key, @required this.questions, this.category, this.noOfQuestions, this.titleColors})
       : super(key: key);
 
   @override
@@ -79,6 +80,7 @@ class _QuizPageState extends State<QuizPage> {
       child: Scaffold(
         key: _key,
         appBar: AppBar(
+          backgroundColor: widget.titleColors[widget.category.id-1],
           title: Text(
             widget.category.name,
           ),
@@ -90,7 +92,8 @@ class _QuizPageState extends State<QuizPage> {
               clipper: WaveClipperTwo(),
               child: Container(
                 decoration:
-                    BoxDecoration(color: Theme.of(context).primaryColor),
+//                    BoxDecoration(color: Theme.of(context).primaryColor),
+                    BoxDecoration(color: widget.titleColors[widget.category.id-1]),
                 height: 200,
               ),
             ),
