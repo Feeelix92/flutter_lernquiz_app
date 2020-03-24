@@ -87,7 +87,6 @@ class QuestionTypeSelect extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.0),
       ),
       color: Colors.blueGrey,
-//      color: Theme.of(context).buttonColor,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
