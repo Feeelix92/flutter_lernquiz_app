@@ -242,7 +242,7 @@
     },
     {
       "type": "multiple",
-      "question": "Wie oft druckt das folgende Code-Snippet \"X\"?\nint i = 3 ;\ndo {\n  System.out.println(\"X\");\n  i++ ;\n} while ((i + 5) < 10);",
+      "question": "Wie oft druckt das folgende Code-Snippet \"X\"?\nint i = 3 ;\ndo {\n  System.out.println(\"X\");\n  i++;\n} while ((i + 5) < 10);",
       "correct_answer": "2",
       "incorrect_answers": [
         "1",
@@ -262,7 +262,7 @@
     },
     {
       "type": "multiple",
-      "question": "Was ist die Ausgabe des folgenden Code-Snippets?\nint i = 12;\nint j = 15 ;\nSystem.out.println((i++) - (++j));",
+      "question": "Was ist die Ausgabe des folgenden Code-Snippets?\nint i = 12;\nint j = 15;\nSystem.out.println((i++) - (++j));",
       "correct_answer": "-4",
       "incorrect_answers": [
         "-3",
@@ -272,7 +272,7 @@
     },
     {
       "type": "multiple",
-      "question": "Wie oft druckt das folgenden Code-Snippet \"X\"?\nint i = 6;\nfor (int j = 0 ; j < ++i ; j += 2) {\n  System.out.println(\"X\") ;\n}",
+      "question": "Wie oft druckt das folgenden Code-Snippet \"X\"?\nint i = 6;\nfor (int j = 0 ; j < ++i; j += 2) {\n  System.out.println(\"X\") ;\n}",
       "correct_answer": "7",
       "incorrect_answers": [
         "4",

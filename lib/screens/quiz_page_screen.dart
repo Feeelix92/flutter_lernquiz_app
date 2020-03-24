@@ -33,6 +33,9 @@ class _QuizPageState extends State<QuizPage> {
   String showTimer = "30";
   bool cancelTimer = false;
 
+  //shuffle
+  bool shuffle = true;
+
   // overriding the initstate function to start timer as this screen is created
   @override
   void initState() {
@@ -68,7 +71,12 @@ class _QuizPageState extends State<QuizPage> {
 
   @override
   Widget build(BuildContext context) {
-    Question question = widget.questions[_currentIndex];
+    final List<dynamic> questionShuffle = widget.questions;
+    if(shuffle == true) {
+      questionShuffle.shuffle();
+      shuffle = false;
+    }
+    Question question = questionShuffle[_currentIndex];
     final List<dynamic> options = question.incorrectAnswers;
     if (!options.contains(question.correctAnswer)) {
       options.add(question.correctAnswer);
