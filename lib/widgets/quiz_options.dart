@@ -43,7 +43,8 @@ class _QuizOptionsDialogState extends State<QuizOptionsDialog> {
             ),
           ),
           SizedBox(height: 10.0),
-          Text("Wie viele Fragen wollen sie zum Thema beantworten?"),
+          Text("Wie viele Fragen wollen sie zum Thema beantworten?",
+            textAlign: TextAlign.center),
           SizedBox(
             width: double.infinity,
             child: Row(

@@ -114,7 +114,7 @@ class _QuizPageState extends State<QuizPage> {
                         backgroundColor: Colors.white70,
                         child: Text("${_currentIndex + 1}"),
                       ),
-                      SizedBox(width: 16.0),
+                      SizedBox(width: 10.0),
                       Expanded(
                         child: Text(
                           HtmlUnescape().convert(
@@ -125,7 +125,7 @@ class _QuizPageState extends State<QuizPage> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20.0),
+                  SizedBox(height: 10.0),
                   Card(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -144,7 +144,7 @@ class _QuizPageState extends State<QuizPage> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(30.0),
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
                     child: CircleAvatar(
                       minRadius: 25.0,
                       maxRadius: 30.0,
