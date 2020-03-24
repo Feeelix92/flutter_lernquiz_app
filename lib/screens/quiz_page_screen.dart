@@ -29,8 +29,8 @@ class _QuizPageState extends State<QuizPage> {
 
   //Default Wert für die Zeit je Frage
   Timer _timer;
-  int _start = 20;
-  String showTimer = "20";
+  int _start = 30;
+  String showTimer = "30";
   bool cancelTimer = false;
 
   // overriding the initstate function to start timer as this screen is created
@@ -179,7 +179,7 @@ class _QuizPageState extends State<QuizPage> {
 
   void _nextSubmit() {
     cancelTimer = false;
-    _start = 21;
+    _start = 31;
     setState(() {
       if (_answers[_currentIndex] == null && _start > 0) {
         _key.currentState.showSnackBar(SnackBar(

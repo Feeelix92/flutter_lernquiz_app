@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:html_unescape/html_unescape.dart';
 import 'package:hs_fulda/models/question.dart';
@@ -44,7 +45,9 @@ class CheckAnswersPage extends StatelessWidget {
 
   Widget _buildItem(BuildContext context, int index) {
     if (index == noOfQuestions) {
-      return RaisedButton(
+      return Padding(
+        padding: EdgeInsets.all(8.0),
+          child: RaisedButton(
         padding: const EdgeInsets.symmetric(
             horizontal: 12.0, vertical: 15.0),
         shape: RoundedRectangleBorder(
@@ -56,6 +59,7 @@ class CheckAnswersPage extends StatelessWidget {
         onPressed: () {
           Navigator.pop(context);
         },
+          ),
       );
     }
     Question question = questions[index];
