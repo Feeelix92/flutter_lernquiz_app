@@ -93,7 +93,7 @@ class _QuizPageState extends State<QuizPage> {
               child: Container(
                 decoration:
                     BoxDecoration(color: widget.titleColors[widget.category.id-1]),
-                height: 200,
+                height: 300,
               ),
             ),
             Padding(

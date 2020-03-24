@@ -198,5 +198,104 @@
         "Richtig"
       ]
     }
+  ],
+  "Programmierung 2": [
+    {
+      "type": "multiple",
+      "question": "Was tut ein Compiler einer höheren Programmiersprache wie Java, C, C++, ...?",
+      "correct_answer": "übersetzt Programmcode in Maschinencode.",
+      "incorrect_answers": [
+        "führt Programmcode aus",
+        "übersetzt Maschinencode in Programmcode.",
+        "bersetzt Maschinencode in Maschinencode für einen anderen Prozessor."
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Was ist die Ausgabe des folgenden Code-Snippets?\nint[] a = {1, 2, 3, 4, 10} ;\nint[] b = {1, 6} ;\nint[] b = a ;\nSystem.out.println(b.length) ;",
+      "correct_answer": "5",
+      "incorrect_answers": [
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Wie oft druckt das folgende Code-Snippet \"X\"?\nint i = 3 ;\ndo {\n  System.out.println(\"X\") ;\n} while ((i + 5) < 10);",
+      "correct_answer": "Endlosschleife",
+      "incorrect_answers": [
+        "1",
+        "5",
+        "10"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Wie oft druckt das folgende Code-Snippet etwas aus?\nint i = 10 ;\nwhile (i < 10) {\n  System.out.println(i) ;\n  i++ ;\n}",
+      "correct_answer": "Gar nicht",
+      "incorrect_answers": [
+        "10",
+        "9",
+        "1"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Wie oft druckt das folgende Code-Snippet \"X\"?\nint i = 3 ;\ndo {\n  System.out.println(\"X\");\n  i++ ;\n} while ((i + 5) < 10);",
+      "correct_answer": "2",
+      "incorrect_answers": [
+        "1",
+        "3",
+        "Gar nicht"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Wie oft druckt das folgende Code-Snippet \"X\"?\nint j = 4;\nfor (int i=3; i < j; i++) {\n  System.out.println(\"X\");\n}",
+      "correct_answer": "1",
+      "incorrect_answers": [
+        "Gar nicht",
+        "4",
+        "2"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Was ist die Ausgabe des folgenden Code-Snippets?\nint i = 12;\nint j = 15 ;\nSystem.out.println((i++) - (++j));",
+      "correct_answer": "-4",
+      "incorrect_answers": [
+        "-3",
+        "-2",
+        "-1"
+      ]
+    },
+    {
+      "type": "multiple",
+      "question": "Wie oft druckt das folgenden Code-Snippet \"X\"?\nint i = 6;\nfor (int j = 0 ; j < ++i ; j += 2) {\n  System.out.println(\"X\") ;\n}",
+      "correct_answer": "7",
+      "incorrect_answers": [
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    {
+      "type": "boolean",
+      "question": "Ist die Ausgabe des folgenden Code-Snippets 17?\nint i=1;\nSystem.out.println( 2 * i + 15 ); ",
+      "correct_answer": "Richtig",
+      "incorrect_answers": [
+        "Falsch"
+      ]
+    },
+    {
+      "type": "boolean",
+      "question": "Was ist die Ausgabe des folgenden Code-Snippets?\nint[] x = {1, 3, 5};\nint[] y = x;\nint[] z = {0, 2, 4};\nz = y;\nSystem.out.println((x == z) ? \"gleich\" : \"ungleich\");",
+      "correct_answer": "Gleich",
+      "incorrect_answers": [
+        "Ungleich"
+      ]
+    }
   ]
+
 }

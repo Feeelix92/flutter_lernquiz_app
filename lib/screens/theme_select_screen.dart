@@ -66,7 +66,7 @@ class ThemeSelect extends StatelessWidget {
                   sliver: SliverGrid(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 1,
-                          childAspectRatio: 2.0,
+                          childAspectRatio: 2.1,
                           crossAxisSpacing: 10.0,
                           mainAxisSpacing: 10.0),
                       delegate: SliverChildBuilderDelegate(
