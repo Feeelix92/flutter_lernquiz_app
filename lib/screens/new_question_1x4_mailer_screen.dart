@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:hs_fulda/models/category.dart';
 
-
 class NewQuestionMailer1x4 extends StatefulWidget {
   @override
   _NewQuestionMailer1x4State createState() => _NewQuestionMailer1x4State();
@@ -12,6 +11,19 @@ class NewQuestionMailer1x4 extends StatefulWidget {
 
 class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
   bool isHTML = false;
+  bool isValidQuestion = true;
+  bool isValidRAnswer = true;
+  bool isValidF1Answer = true;
+  bool isValidF2Answer = true;
+  bool isValidF3Answer = true;
+
+  void checkBeforeSend() {
+    if (_questionController.text.isNotEmpty && _rAController.text.isNotEmpty && _f1AController.text.isNotEmpty && _f2AController.text.isNotEmpty && _f3AController.text.isNotEmpty) {
+      send();
+    } else {
+      _onWillPop();
+    }
+  }
 
   String dropDownStr = "";
   List<String> dropDownAntworten = List<String>(categories.length);
@@ -97,7 +109,6 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
             padding: EdgeInsets.all(8.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
 //                  Padding(
@@ -110,6 +121,7 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
 //                      ),
 //                    ),
 //                  ),
+
                 Container(
                   padding: EdgeInsets.all(5.0),
                   child: Text(
@@ -129,20 +141,37 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
                   padding: EdgeInsets.all(8.0),
                   child: TextField(
                     controller: _questionController,
+                    onChanged: (value) {
+                      if (_questionController.text.isNotEmpty) {
+                        isValidQuestion = true;
+                      } else {
+                        isValidQuestion = false;
+                      }
+                      setState(() {});
+                    },
                     maxLines: 3,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Frage',
-                    ),
+                        border: OutlineInputBorder(),
+                        labelText: 'Frage',
+                        errorText: isValidQuestion ? null : "Frage fehlt"),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: TextField(
                     controller: _rAController,
+                    onChanged: (value) {
+                      if (_rAController.text.isNotEmpty) {
+                        isValidRAnswer = true;
+                      } else {
+                        isValidRAnswer = false;
+                      }
+                      setState(() {});
+                    },
                     maxLines: 2,
                     decoration: InputDecoration(
                         labelText: 'richtige Antwortmöglichkeit',
+                        errorText: isValidRAnswer ? null : "Richtige Antwort fehlt",
                         border: OutlineInputBorder()),
                   ),
                 ),
@@ -150,9 +179,18 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
                   padding: EdgeInsets.all(8.0),
                   child: TextField(
                     controller: _f1AController,
+                    onChanged: (value) {
+                      if (_f1AController.text.isNotEmpty) {
+                        isValidF1Answer = true;
+                      } else {
+                        isValidF1Answer = false;
+                      }
+                      setState(() {});
+                    },
                     maxLines: 2,
                     decoration: InputDecoration(
                         labelText: '1. falsche Antwortmöglichkeit',
+                        errorText: isValidF1Answer ? null : "Falsche Antwort fehlt",
                         border: OutlineInputBorder()),
                   ),
                 ),
@@ -160,9 +198,18 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
                   padding: EdgeInsets.all(8.0),
                   child: TextField(
                     controller: _f2AController,
+                    onChanged: (value) {
+                      if (_f2AController.text.isNotEmpty) {
+                        isValidF2Answer = true;
+                      } else {
+                        isValidF2Answer = false;
+                      }
+                      setState(() {});
+                    },
                     maxLines: 2,
                     decoration: InputDecoration(
                         labelText: '2. falsche Antwortmöglichkeit',
+                        errorText: isValidF2Answer ? null : "Falsche Antwort fehlt",
                         border: OutlineInputBorder()),
                   ),
                 ),
@@ -170,9 +217,18 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
                   padding: EdgeInsets.all(8.0),
                   child: TextField(
                     controller: _f3AController,
+                    onChanged: (value) {
+                      if (_f3AController.text.isNotEmpty) {
+                        isValidF3Answer = true;
+                      } else {
+                        isValidF3Answer = false;
+                      }
+                      setState(() {});
+                    },
                     maxLines: 2,
                     decoration: InputDecoration(
                         labelText: '3. falsche Antwortmöglichkeit',
+                        errorText: isValidF3Answer ? null : "Falsche Antwort fehlt",
                         border: OutlineInputBorder()),
                   ),
                 ),
@@ -201,7 +257,7 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
                         child: Text(
                           "Frage einreichen",
                         ),
-                        onPressed: send,
+                        onPressed: checkBeforeSend,
                       ),
                     ],
                   ),
@@ -233,4 +289,23 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
         }).toList());
   }
 
+  Future<bool> _onWillPop() async {
+    return showDialog<bool>(
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            content: Text(
+                "Sie können nur vollständig ausgefüllte Formulare abschicken."),
+            title: Text("Achtung!"),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Ok"),
+                onPressed: () {
+                  Navigator.pop(context, true);
+                },
+              ),
+            ],
+          );
+        });
+  }
 }
