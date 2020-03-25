@@ -25,7 +25,7 @@ class QuestionTypeSelect extends StatelessWidget {
           title: Text(
             'Fragentyp wählen',
           ),
-          elevation: 0,
+          elevation: 3,
         ),
         body: Stack(
           children: <Widget>[
