@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
+import 'package:hs_fulda/models/category.dart';
 
-import '../main.dart';
 
 class NewQuestionMailer1x2 extends StatefulWidget {
   @override
@@ -12,6 +12,22 @@ class NewQuestionMailer1x2 extends StatefulWidget {
 
 class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
   bool isHTML = false;
+
+  String dropdownStr;
+  List<String> dropDownAntworten = List<String>(categories.length-1);
+
+  void buildDropDownItems(){
+    for(int i = 0; i < categories.length-1; i++){
+      Category category = categories[i];
+      dropDownAntworten[i] = category.name;
+      dropdownStr = dropDownAntworten[0];
+    }
+  }
+  @override
+  void initState() {
+    buildDropDownItems();
+    super.initState();
+  }
 
   final _recipientController = TextEditingController(
     text: 'momo@hbtech.eu',
@@ -72,7 +88,6 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
             padding: EdgeInsets.all(8.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
 //                  Padding(
@@ -81,10 +96,16 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
 //                      controller: _recipientController,
 //                      decoration: InputDecoration(
 //                        border: OutlineInputBorder(),
-//                        labelText: 'Recipient',
+//                        labelText: 'Empfänger',
 //                      ),
 //                    ),
 //                  ),
+                Container(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: buildDropdownButton(),
+                  ),
+                ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: TextField(
@@ -129,11 +150,7 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
                         ),
                         color: Theme.of(context).buttonColor,
                         child: Text("Zurück"),
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) => MyBottomNavigationBar(),
-                          ));
-                        },
+                        onPressed: () => Navigator.pop(context),
                       ),
                       RaisedButton(
                         padding: const EdgeInsets.symmetric(
@@ -156,5 +173,22 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
         ),
       ),
     );
+  }
+  DropdownButton<String> buildDropdownButton() {
+    buildDropDownItems();
+    return DropdownButton(
+        value: dropdownStr,
+        style: TextStyle(
+          fontSize: 20,
+          color: Colors.black,
+        ),
+        onChanged: (newValue) {
+          setState(() {
+            dropdownStr = newValue;
+          });
+        },
+        items: dropDownAntworten.map<DropdownMenuItem<String>>((value) {
+          return DropdownMenuItem<String>(value: value, child: Text(value));
+        }).toList());
   }
 }

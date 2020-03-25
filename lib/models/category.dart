@@ -9,4 +9,5 @@ final List<Category> categories = [
   Category(1, "Multimedia Grundlagen"),
   Category(2, "Mediendidaktik und E-Learning"),
   Category(3, "Programmierung 2"),
+  Category(4, ""),
 ];
