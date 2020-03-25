@@ -12,7 +12,12 @@ class QuizPage extends StatefulWidget {
   final noOfQuestions;
   final titleColors;
 
-  const QuizPage({Key key, @required this.questions, this.category, this.noOfQuestions, this.titleColors})
+  const QuizPage(
+      {Key key,
+      @required this.questions,
+      this.category,
+      this.noOfQuestions,
+      this.titleColors})
       : super(key: key);
 
   @override
@@ -72,7 +77,7 @@ class _QuizPageState extends State<QuizPage> {
   @override
   Widget build(BuildContext context) {
     final List<dynamic> questionShuffle = widget.questions;
-    if(shuffle == true) {
+    if (shuffle == true) {
       questionShuffle.shuffle();
       shuffle = false;
     }
@@ -88,98 +93,108 @@ class _QuizPageState extends State<QuizPage> {
       child: Scaffold(
         key: _key,
         appBar: AppBar(
-          backgroundColor: widget.titleColors[widget.category.id-1],
+          backgroundColor: widget.titleColors[widget.category.id - 1],
           title: Text(
             widget.category.name,
           ),
           elevation: 0,
         ),
-        body: Stack(
-          children: <Widget>[
-            ClipPath(
-              clipper: WaveClipperTwo(),
-              child: Container(
-                decoration:
-                    BoxDecoration(color: widget.titleColors[widget.category.id-1]),
-                height: 300,
+        bottomNavigationBar: BottomAppBar(
+          child: new Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: CircleAvatar(
+                  minRadius: 20.0,
+                  maxRadius: 25.0,
+                  backgroundColor: Theme.of(context).accentColor,
+                  foregroundColor: Colors.white,
+                  child: Text(
+                    showTimer,
+                    style: TextStyle(
+                      fontSize: 18.0,
+                    ),
+                  ),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                children: <Widget>[
-                  Row(
+              RaisedButton(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 12.0, vertical: 15.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Text(
+                  _currentIndex == (widget.noOfQuestions - 1)
+                      ? "Quiz beenden"
+                      : "weiter",
+                ),
+                onPressed: _nextSubmit,
+              ),
+            ],
+          ),
+        ),
+        body: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Stack(
+              children: <Widget>[
+                ClipPath(
+                  clipper: WaveClipperTwo(),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: widget.titleColors[widget.category.id - 1]),
+                    height: 300,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      CircleAvatar(
-                        backgroundColor: Colors.white70,
-                        child: Text("${_currentIndex + 1}"),
+                      Row(
+                        children: <Widget>[
+                          CircleAvatar(
+                            backgroundColor: Colors.white70,
+                            child: Text("${_currentIndex + 1}"),
+                          ),
+                          SizedBox(width: 10.0),
+                          Flexible(
+                            child: Text(
+                              HtmlUnescape().convert(
+                                  widget.questions[_currentIndex].question),
+                              softWrap: true,
+                              style: _questionStyle,
+                            ),
+                          ),
+                        ],
                       ),
-                      SizedBox(width: 10.0),
-                      Expanded(
-                        child: Text(
-                          HtmlUnescape().convert(
-                              widget.questions[_currentIndex].question),
-                          softWrap: true,
-                          style: _questionStyle,
+                      SizedBox(height: 10.0),
+                      Card(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            ...options.map((option) => RadioListTile(
+                                  title:
+                                      Text(HtmlUnescape().convert("$option")),
+                                  groupValue: _answers[_currentIndex],
+                                  value: option,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _answers[_currentIndex] = option;
+                                    });
+                                  },
+                                )),
+                          ],
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 10.0),
-                  Card(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        ...options.map((option) => RadioListTile(
-                              title: Text(HtmlUnescape().convert("$option")),
-                              groupValue: _answers[_currentIndex],
-                              value: option,
-                              onChanged: (value) {
-                                setState(() {
-                                  _answers[_currentIndex] = option;
-                                });
-                              },
-                            )),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: CircleAvatar(
-                      minRadius: 25.0,
-                      maxRadius: 30.0,
-                      backgroundColor: Theme.of(context).accentColor,
-                      foregroundColor: Colors.white,
-                      child: Text(
-                        showTimer,
-                        style: TextStyle(
-                          fontSize: 18.0,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      alignment: Alignment.bottomCenter,
-                      child: RaisedButton(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 12.0, vertical: 15.0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: Text(
-                          _currentIndex == (widget.noOfQuestions - 1)
-                              ? "Quiz beenden"
-                              : "weiter",
-                        ),
-                        onPressed: _nextSubmit,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -195,12 +210,14 @@ class _QuizPageState extends State<QuizPage> {
         ));
         return;
       }
-      if (_currentIndex < ( widget.noOfQuestions - 1)) {
+      if (_currentIndex < (widget.noOfQuestions - 1)) {
         _currentIndex++;
       } else {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (_) => QuizFinishedPage(
-                questions: widget.questions, answers: _answers, noOfQuestions: widget.noOfQuestions)));
+                questions: widget.questions,
+                answers: _answers,
+                noOfQuestions: widget.noOfQuestions)));
       }
     });
   }
