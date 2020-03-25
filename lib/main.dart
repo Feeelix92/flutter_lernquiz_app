@@ -3,12 +3,14 @@ import 'package:hs_fulda/screens/home_screen.dart';
 import 'package:hs_fulda/screens/question_type_select.dart';
 import 'package:hs_fulda/screens/theme_select_screen.dart';
 import 'package:hs_fulda/screens/loading_screen.dart';
+import 'package:hs_fulda/widgets/portraitmode.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget with PortraitModeMixin{
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Quiz App',
