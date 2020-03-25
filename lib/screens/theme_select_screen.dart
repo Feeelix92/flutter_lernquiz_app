@@ -25,7 +25,7 @@ class ThemeSelect extends StatelessWidget {
           title: Text(
             'Themen',
           ),
-          elevation: 0,
+          elevation: 3,
         ),
         body: Stack(
           children: <Widget>[

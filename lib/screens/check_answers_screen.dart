@@ -19,7 +19,33 @@ class CheckAnswersPage extends StatelessWidget {
         title: Text(
           'Antworten prüfen',
         ),
-        elevation: 0,
+        elevation: 3,
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Theme.of(context).accentColor,
+        elevation: 3,
+        child: new Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: RaisedButton(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 12.0, vertical: 15.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Text(
+                  "Fertig",
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ),
+          ],
+        ),
       ),
       body: Stack(
         children: <Widget>[
@@ -47,19 +73,6 @@ class CheckAnswersPage extends StatelessWidget {
     if (index == noOfQuestions) {
       return Padding(
         padding: EdgeInsets.all(8.0),
-          child: RaisedButton(
-        padding: const EdgeInsets.symmetric(
-            horizontal: 12.0, vertical: 15.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        child: Text(
-          "Fertig",
-        ),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-          ),
       );
     }
     Question question = questions[index];

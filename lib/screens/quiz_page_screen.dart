@@ -97,7 +97,7 @@ class _QuizPageState extends State<QuizPage> {
           title: Text(
             widget.category.name,
           ),
-          elevation: 0,
+          elevation: 3,
         ),
         bottomNavigationBar: BottomAppBar(
           child: new Row(

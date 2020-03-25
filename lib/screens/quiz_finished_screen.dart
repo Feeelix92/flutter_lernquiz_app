@@ -35,7 +35,7 @@ class QuizFinishedPage extends StatelessWidget {
         title: Text(
           'Ergebnis',
         ),
-        elevation: 0,
+        elevation: 3,
       ),
       body: Container(
         height: double.infinity,
