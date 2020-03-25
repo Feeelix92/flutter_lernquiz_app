@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.white,
             ),
           ),
-          elevation: 2,
+          elevation: 3,
         ),
         body: Stack(children: <Widget>[
           Container(

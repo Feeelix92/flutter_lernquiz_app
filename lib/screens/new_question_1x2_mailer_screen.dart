@@ -11,6 +11,17 @@ class NewQuestionMailer1x2 extends StatefulWidget {
 
 class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
   bool isHTML = false;
+  bool isValidQuestion = true;
+  bool isValidRAnswer = true;
+  bool isValidF1Answer = true;
+
+  void checkBeforeSend() {
+    if (_questionController.text.isNotEmpty && _rAController.text.isNotEmpty && _f1AController.text.isNotEmpty ) {
+      send();
+    } else {
+      _onWillPop();
+    }
+  }
 
   String dropDownStr = "";
   List<String> dropDownAntworten = List<String>(categories.length);
@@ -19,7 +30,7 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
     for (int i = 0; i < categories.length; i++) {
       Category category = categories[i];
       dropDownAntworten[i] = category.name;
-      dropDownStr = dropDownAntworten[0];
+      dropDownStr = dropDownAntworten[0].toString();
     }
     _categoriesController.text = dropDownStr;
   }
@@ -31,7 +42,7 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
   }
 
   final _recipientController = TextEditingController(
-    text: 'momo@hbtech.eu',
+    text: 'momo@hbtech.eu', //e-mail-adresse empfänger
   );
 
   final _categoriesController = TextEditingController();
@@ -50,8 +61,8 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
       body: 'Frage: ${_questionController.text}\n'
           '\n'
           'richtige Antwort: \n${_rAController.text}\n'
-          'falsche Antwort: \n'
-          '${_f1AController.text}',
+          'falsche Antworten: \n'
+          '${_f1AController.text} ;\n',
       subject: '[Neue Frage] ${_categoriesController.text}',
       recipients: [_recipientController.text],
       isHTML: isHTML,
@@ -81,7 +92,7 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
         title: Text('Frage einreichen'),
         actions: <Widget>[
           IconButton(
-            onPressed: send,
+            onPressed: checkBeforeSend,
             icon: Icon(Icons.send),
           )
         ],
@@ -100,19 +111,19 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
 //                      controller: _recipientController,
 //                      decoration: InputDecoration(
 //                        border: OutlineInputBorder(),
-//                        labelText: 'Empfänger',
+//                        labelText: 'Recipient',
 //                      ),
 //                    ),
 //                  ),
+
                 Container(
-//                  padding: EdgeInsets.all(6.0),
+                  padding: EdgeInsets.all(5.0),
                   child: Text(
-                        "Wählen Sie eine Kategorie für Ihre Frage:",
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                    textAlign: TextAlign.left,
-                      ),
+                    "Wählen Sie eine Kategorie für Ihre Frage:",
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
                 ),
                 Container(
                   child: Padding(
@@ -124,20 +135,37 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
                   padding: EdgeInsets.all(8.0),
                   child: TextField(
                     controller: _questionController,
+                    onChanged: (value) {
+                      if (_questionController.text.isNotEmpty) {
+                        isValidQuestion = true;
+                      } else {
+                        isValidQuestion = false;
+                      }
+                      setState(() {});
+                    },
                     maxLines: 3,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Frage',
-                    ),
+                        border: OutlineInputBorder(),
+                        labelText: 'Frage',
+                        errorText: isValidQuestion ? null : "Frage fehlt"),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: TextField(
                     controller: _rAController,
+                    onChanged: (value) {
+                      if (_rAController.text.isNotEmpty) {
+                        isValidRAnswer = true;
+                      } else {
+                        isValidRAnswer = false;
+                      }
+                      setState(() {});
+                    },
                     maxLines: 2,
                     decoration: InputDecoration(
                         labelText: 'richtige Antwortmöglichkeit',
+                        errorText: isValidRAnswer ? null : "Richtige Antwort fehlt",
                         border: OutlineInputBorder()),
                   ),
                 ),
@@ -145,9 +173,18 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
                   padding: EdgeInsets.all(8.0),
                   child: TextField(
                     controller: _f1AController,
+                    onChanged: (value) {
+                      if (_f1AController.text.isNotEmpty) {
+                        isValidF1Answer = true;
+                      } else {
+                        isValidF1Answer = false;
+                      }
+                      setState(() {});
+                    },
                     maxLines: 2,
                     decoration: InputDecoration(
                         labelText: 'falsche Antwortmöglichkeit',
+                        errorText: isValidF1Answer ? null : "Falsche Antwort fehlt",
                         border: OutlineInputBorder()),
                   ),
                 ),
@@ -176,7 +213,7 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
                         child: Text(
                           "Frage einreichen",
                         ),
-                        onPressed: send,
+                        onPressed: checkBeforeSend,
                       ),
                     ],
                   ),
@@ -206,5 +243,25 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
         items: dropDownAntworten.map<DropdownMenuItem<String>>((value) {
           return DropdownMenuItem<String>(value: value, child: Text(value));
         }).toList());
+  }
+
+  Future<bool> _onWillPop() async {
+    return showDialog<bool>(
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            content: Text(
+                "Sie können nur vollständig ausgefüllte Formulare abschicken."),
+            title: Text("Achtung!"),
+            actions: <Widget>[
+              FlatButton(
+                child: Text("Ok"),
+                onPressed: () {
+                  Navigator.pop(context, true);
+                },
+              ),
+            ],
+          );
+        });
   }
 }

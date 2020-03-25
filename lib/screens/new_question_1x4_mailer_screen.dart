@@ -98,7 +98,7 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
         title: Text('Frage einreichen'),
         actions: <Widget>[
           IconButton(
-            onPressed: send,
+            onPressed: checkBeforeSend,
             icon: Icon(Icons.send),
           )
         ],
