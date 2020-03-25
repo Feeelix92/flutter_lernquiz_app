@@ -13,11 +13,11 @@ class NewQuestionMailer1x2 extends StatefulWidget {
 class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
   bool isHTML = false;
 
-  String dropdownStr;
-  List<String> dropDownAntworten = List<String>(categories.length-1);
+  String dropdownStr = "";
+  List<String> dropDownAntworten = List<String>(categories.length);
 
-  void buildDropDownItems(){
-    for(int i = 0; i < categories.length-1; i++){
+  Future<void> buildDropDownItems(){
+    for(int i = 0; i < categories.length; i++){
       Category category = categories[i];
       dropDownAntworten[i] = category.name;
       dropdownStr = dropDownAntworten[0];
@@ -39,16 +39,18 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
 
   final _rAController = TextEditingController();
   final _f1AController = TextEditingController();
+  final _dropDownController = TextEditingController();
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Future<void> send() async {
     final Email email = Email(
-      body: 'richtige Antwort: \n' +
-          _rAController.text +
-          '\nfalsche Antworten: \n' +
-          _f1AController.text,
-      subject: '[Neue Frage eingereicht] ' + _subjectController.text,
+      body: 'Frage: ${_subjectController.text}\n '
+          ''
+          'richtige Antwort: ${_rAController.text}\n'
+          'falsche Antworten: \n'
+          '${_f1AController.text}',
+      subject: '[Neue Frage] ${_dropDownController.text}',
       recipients: [_recipientController.text],
       isHTML: isHTML,
     );
@@ -175,7 +177,6 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
     );
   }
   DropdownButton<String> buildDropdownButton() {
-    buildDropDownItems();
     return DropdownButton(
         value: dropdownStr,
         style: TextStyle(
@@ -185,6 +186,7 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
         onChanged: (newValue) {
           setState(() {
             dropdownStr = newValue;
+            _dropDownController.text = dropdownStr;
           });
         },
         items: dropDownAntworten.map<DropdownMenuItem<String>>((value) {
