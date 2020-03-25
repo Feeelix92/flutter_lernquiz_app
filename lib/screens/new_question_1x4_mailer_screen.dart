@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
+import 'package:hs_fulda/models/category.dart';
 
 
 class NewQuestionMailer1x4 extends StatefulWidget {
@@ -12,11 +13,31 @@ class NewQuestionMailer1x4 extends StatefulWidget {
 class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
   bool isHTML = false;
 
+  String dropDownStr = "";
+  List<String> dropDownAntworten = List<String>(categories.length);
+
+  void buildDropDownItems() {
+    for (int i = 0; i < categories.length; i++) {
+      Category category = categories[i];
+      dropDownAntworten[i] = category.name;
+      dropDownStr = dropDownAntworten[0].toString();
+    }
+    _categoriesController.text = dropDownStr;
+  }
+
+  @override
+  void initState() {
+    buildDropDownItems();
+    super.initState();
+  }
+
   final _recipientController = TextEditingController(
     text: 'momo@hbtech.eu', //e-mail-adresse empfänger
   );
 
-  final _subjectController = TextEditingController(
+  final _categoriesController = TextEditingController();
+
+  final _questionController = TextEditingController(
     text: '',
   );
 
@@ -29,15 +50,14 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
 
   Future<void> send() async {
     final Email email = Email(
-      body: 'richtige Antwort: \n' +
-          _rAController.text +
-          '\nfalsche Antworten: \n1. ' +
-          _f1AController.text +
-          '\n2. ' +
-          _f2AController.text +
-          '\n3. ' +
-          _f3AController.text,
-      subject: '[Neue Frage eingereicht] ' + _subjectController.text,
+      body: 'Frage: ${_questionController.text}\n'
+          '\n'
+          'richtige Antwort: \n${_rAController.text}\n'
+          'falsche Antworten: \n'
+          '${_f1AController.text} ;\n'
+          '${_f2AController.text} ;\n'
+          '${_f3AController.text}',
+      subject: '[Neue Frage] ${_categoriesController.text}',
       recipients: [_recipientController.text],
       isHTML: isHTML,
     );
@@ -90,10 +110,25 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
 //                      ),
 //                    ),
 //                  ),
+                Container(
+                  padding: EdgeInsets.all(5.0),
+                  child: Text(
+                    "Wählen Sie eine Kategorie für Ihre Frage:",
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+                Container(
+                  child: Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: buildDropdownButton(),
+                  ),
+                ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: TextField(
-                    controller: _subjectController,
+                    controller: _questionController,
                     maxLines: 3,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -178,4 +213,24 @@ class _NewQuestionMailer1x4State extends State<NewQuestionMailer1x4> {
       ),
     );
   }
+
+  DropdownButton<String> buildDropdownButton() {
+    return DropdownButton(
+        value: dropDownStr,
+        style: TextStyle(
+          fontSize: 18,
+          color: Colors.black,
+          fontFamily: "Montserrat",
+        ),
+        onChanged: (newValue) {
+          setState(() {
+            dropDownStr = newValue;
+            _categoriesController.text = dropDownStr;
+          });
+        },
+        items: dropDownAntworten.map<DropdownMenuItem<String>>((value) {
+          return DropdownMenuItem<String>(value: value, child: Text(value));
+        }).toList());
+  }
+
 }

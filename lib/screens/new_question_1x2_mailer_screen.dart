@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:hs_fulda/models/category.dart';
 
-
 class NewQuestionMailer1x2 extends StatefulWidget {
   @override
   _NewQuestionMailer1x2State createState() => _NewQuestionMailer1x2State();
@@ -13,16 +12,18 @@ class NewQuestionMailer1x2 extends StatefulWidget {
 class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
   bool isHTML = false;
 
-  String dropdownStr = "";
+  String dropDownStr = "";
   List<String> dropDownAntworten = List<String>(categories.length);
 
-  Future<void> buildDropDownItems(){
-    for(int i = 0; i < categories.length; i++){
+  void buildDropDownItems() {
+    for (int i = 0; i < categories.length; i++) {
       Category category = categories[i];
       dropDownAntworten[i] = category.name;
-      dropdownStr = dropDownAntworten[0];
+      dropDownStr = dropDownAntworten[0];
     }
+    _categoriesController.text = dropDownStr;
   }
+
   @override
   void initState() {
     buildDropDownItems();
@@ -33,24 +34,25 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
     text: 'momo@hbtech.eu',
   );
 
-  final _subjectController = TextEditingController(
+  final _categoriesController = TextEditingController();
+
+  final _questionController = TextEditingController(
     text: '',
   );
 
   final _rAController = TextEditingController();
   final _f1AController = TextEditingController();
-  final _dropDownController = TextEditingController();
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Future<void> send() async {
     final Email email = Email(
-      body: 'Frage: ${_subjectController.text}\n '
-          ''
-          'richtige Antwort: ${_rAController.text}\n'
-          'falsche Antworten: \n'
+      body: 'Frage: ${_questionController.text}\n'
+          '\n'
+          'richtige Antwort: \n${_rAController.text}\n'
+          'falsche Antwort: \n'
           '${_f1AController.text}',
-      subject: '[Neue Frage] ${_dropDownController.text}',
+      subject: '[Neue Frage] ${_categoriesController.text}',
       recipients: [_recipientController.text],
       isHTML: isHTML,
     );
@@ -103,15 +105,25 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
 //                    ),
 //                  ),
                 Container(
+//                  padding: EdgeInsets.all(6.0),
+                  child: Text(
+                        "Wählen Sie eine Kategorie für Ihre Frage:",
+                        style: TextStyle(
+                          fontSize: 16,
+                        ),
+                    textAlign: TextAlign.left,
+                      ),
+                ),
+                Container(
                   child: Padding(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: const EdgeInsets.all(2.0),
                     child: buildDropdownButton(),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: TextField(
-                    controller: _subjectController,
+                    controller: _questionController,
                     maxLines: 3,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -176,17 +188,19 @@ class _NewQuestionMailer1x2State extends State<NewQuestionMailer1x2> {
       ),
     );
   }
+
   DropdownButton<String> buildDropdownButton() {
     return DropdownButton(
-        value: dropdownStr,
+        value: dropDownStr,
         style: TextStyle(
-          fontSize: 20,
+          fontSize: 18,
           color: Colors.black,
+          fontFamily: "Montserrat",
         ),
         onChanged: (newValue) {
           setState(() {
-            dropdownStr = newValue;
-            _dropDownController.text = dropdownStr;
+            dropDownStr = newValue;
+            _categoriesController.text = dropDownStr;
           });
         },
         items: dropDownAntworten.map<DropdownMenuItem<String>>((value) {
