@@ -4,6 +4,8 @@ import 'package:hs_fulda/models/question_type.dart';
 import 'package:hs_fulda/widgets/question_options.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
+import 'help_mailer_screen.dart';
+
 class QuestionTypeSelect extends StatelessWidget {
   final List<Color> tileColors = [
     Colors.green,
@@ -25,6 +27,15 @@ class QuestionTypeSelect extends StatelessWidget {
           title: Text(
             'Fragentyp wählen',
           ),
+          actions: <Widget>[
+            IconButton(
+              onPressed:(){ Navigator.of(context).push(MaterialPageRoute(builder: (context) => HelpMailer()));},
+              icon: Icon(
+                Icons.help,
+                color: Colors.white,
+              ),
+            ),
+          ],
           elevation: 3,
         ),
         body: Stack(
