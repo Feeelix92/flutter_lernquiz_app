@@ -4,6 +4,8 @@ import 'package:hs_fulda/models/category.dart';
 import 'package:hs_fulda/widgets/quiz_options.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
+import 'help_mailer_screen.dart';
+
 class ThemeSelect extends StatelessWidget {
   final List<Color> titleColors = [
     Colors.teal,
@@ -25,6 +27,15 @@ class ThemeSelect extends StatelessWidget {
           title: Text(
             'Themen',
           ),
+          actions: <Widget>[
+            IconButton(
+              onPressed:(){ Navigator.of(context).push(MaterialPageRoute(builder: (context) => HelpMailer()));},
+              icon: Icon(
+                Icons.help,
+                color: Colors.white,
+              ),
+            ),
+          ],
           elevation: 3,
         ),
         body: Stack(
