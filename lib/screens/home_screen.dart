@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hs_fulda/main.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -18,8 +19,14 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           actions: <Widget>[
             IconButton(
-              onPressed: Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreen())),
-              icon: Icon(Icons.help),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => MyBottomNavigationBar()));
+              },
+              icon: Icon(
+                Icons.help,
+                color: Colors.white,
+              ),
             ),
           ],
           elevation: 3,
