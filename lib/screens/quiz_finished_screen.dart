@@ -56,7 +56,7 @@ class QuizFinishedPage extends StatelessWidget {
                   contentPadding: const EdgeInsets.all(16.0),
                   title: Text("Gesamtanzahl Fragen", style: titleStyle),
 //                  trailing: Text("${questions.length}", style: trailingStyle),
-                  trailing: Text(noOfQuestions, style: trailingStyle),
+                  trailing: Text("$noOfQuestions", style: trailingStyle),
                 ),
               ),
               SizedBox(height: 10.0),
