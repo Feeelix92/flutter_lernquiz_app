@@ -5,7 +5,7 @@ Eine App zum Lernen prüfungsrelevanter Inhalte, in der man auch selbsständig F
 ## Sprints
 
 17.12.19 Sprint 1
-Ich möchte eine Home Seite haben.
+Ich möchte eine Home Seite haben.<br/>
 Auf der Home Seite soll mir ein Bild angezeigt werden.
 Auf dem Bild auf der Home Seite soll ein Text angezeigt werden.
 Ich möchte eine Bottom-Navigationbar haben.
