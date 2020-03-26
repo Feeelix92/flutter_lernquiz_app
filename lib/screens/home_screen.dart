@@ -43,10 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 250.0,
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image:
-                                    new AssetImage('assets/img/tafel_home.jpg'),
-                                fit: BoxFit.cover)),
+                          image: DecorationImage(
+                              image: AssetImage('assets/img/tafel_home.jpg'),
+                              fit: BoxFit.cover),
+                        ),
                         child: Center(
                           child: Text(
                             "Herzlich Willkommen \n in der Quiz App!",
