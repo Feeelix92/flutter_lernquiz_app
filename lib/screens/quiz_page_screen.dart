@@ -177,23 +177,22 @@ class _QuizPageState extends State<QuizPage> {
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             ...options.map((option) => RadioListTile(
-                              title:
-                              Text(HtmlUnescape().convert("$option")),
-                              groupValue: _answers[_currentIndex],
-                              value: option,
-                              onChanged: (value) {
-                                setState(() {
-                                  _answers[_currentIndex] = option;
-                                });
-                              },
-                            )),
+                                  title:
+                                      Text(HtmlUnescape().convert("$option")),
+                                  groupValue: _answers[_currentIndex],
+                                  value: option,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _answers[_currentIndex] = option;
+                                    });
+                                  },
+                                )),
                           ],
                         ),
                       ),
                     ],
                   ),
                 ),
-
               ],
             ),
           ),
