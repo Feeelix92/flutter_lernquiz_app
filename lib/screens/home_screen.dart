@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
           width: double.infinity,
           decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
-            Theme.of(context).primaryColor.withOpacity(0.5),
+            Theme.of(context).primaryColor.withOpacity(0.3),
             Colors.white,
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
           child: SizedBox(
