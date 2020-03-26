@@ -65,7 +65,9 @@ class _HomeScreenState extends State<HomeScreen> {
 //                  ),
 //                ),
                 buildText(
-                  "Hier können Sie prüfungsrelevante Inhalte schnell und einfach lernen. Und weil uns noch kein besserer Text eingefallen ist steht das hier so.",
+                  "Hier können Sie prüfungsrelevante Inhalte schnell und einfach lernen. "
+                  "\n\nFalls Ihnen die Fragen nicht ausreichen, können Sie auch selbstständig Fragen erstellen und einreichen."
+                  "\n\nBei Problemen oder Verbesserungsvorschlägen können Sie sich bei uns melden.",
                 ),
               ],
             ),
