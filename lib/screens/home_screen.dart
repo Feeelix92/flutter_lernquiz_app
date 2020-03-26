@@ -19,10 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           actions: <Widget>[
             IconButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => MyBottomNavigationBar()));
-              },
+              onPressed:(){ Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyBottomNavigationBar()));},
               icon: Icon(
                 Icons.help,
                 color: Colors.white,
