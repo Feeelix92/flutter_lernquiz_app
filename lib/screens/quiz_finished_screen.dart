@@ -55,7 +55,6 @@ class QuizFinishedPage extends StatelessWidget {
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(16.0),
                   title: Text("Gesamtanzahl Fragen", style: titleStyle),
-//                  trailing: Text("${questions.length}", style: trailingStyle),
                   trailing: Text("$noOfQuestions", style: trailingStyle),
                 ),
               ),
