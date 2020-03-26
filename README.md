@@ -1,6 +1,6 @@
 # flutter_lernquiz_app
 
-Eine App zum lernen prüfungsrelevanter Inhalte, in der man auch selbsständig Fragen einreichen kann.
+Eine App zum Lernen prüfungsrelevanter Inhalte, in der man auch selbsständig Fragen einreichen kann.
 
 ## Sprints
 
