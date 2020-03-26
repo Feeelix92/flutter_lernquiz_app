@@ -212,7 +212,7 @@ class _QuizPageState extends State<QuizPage> {
       if (_currentIndex < (widget.noOfQuestions - 1)) {
         _currentIndex++;
         cancelTimer = false;
-        _start = 31;
+        _start = 30;
       } else {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (_) => QuizFinishedPage(
