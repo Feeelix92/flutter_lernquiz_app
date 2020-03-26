@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hs_fulda/main.dart';
+import 'package:hs_fulda/screens/help_mailer_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           actions: <Widget>[
             IconButton(
-              onPressed:(){ Navigator.of(context).push(MaterialPageRoute(builder: (context) => MyBottomNavigationBar()));},
+              onPressed:(){ Navigator.of(context).push(MaterialPageRoute(builder: (context) => HelpMailer()));},
               icon: Icon(
                 Icons.help,
                 color: Colors.white,
