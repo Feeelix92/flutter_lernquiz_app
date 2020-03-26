@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             child: Column(
               children: <Widget>[
-                Image.asset('assets/img/bild_home.jpg'),
+                Image.asset('assets/img/tafel_home.jpg'),
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(colors: [
