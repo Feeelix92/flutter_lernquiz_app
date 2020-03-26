@@ -19,7 +19,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           actions: <Widget>[
             IconButton(
-              onPressed:(){ Navigator.of(context).push(MaterialPageRoute(builder: (context) => HelpMailer()));},
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => HelpMailer()));
+              },
               icon: Icon(
                 Icons.help,
                 color: Colors.white,
@@ -28,28 +31,33 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
           elevation: 3,
         ),
-        body: Stack(children: <Widget>[
-          Container(
-            child: Column(
+        body: SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: SingleChildScrollView(
+            child: Stack(
               children: <Widget>[
                 Container(
-                  height: 250.0,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: new AssetImage('assets/img/tafel_home.jpg'),
-                          fit: BoxFit.cover)),
-                  child: Center(
-                    child: Text(
-                      "Herzlich Willkommen \n in der Quiz App!",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        height: 250.0,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image:
+                                    new AssetImage('assets/img/tafel_home.jpg'),
+                                fit: BoxFit.cover)),
+                        child: Center(
+                          child: Text(
+                            "Herzlich Willkommen \n in der Quiz App!",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 25,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
 //                Image.asset('assets/img/tafel_home.jpg'),
 //                Container(
 //                  decoration: BoxDecoration(
@@ -64,15 +72,18 @@ class _HomeScreenState extends State<HomeScreen> {
 //                    "Herzlich Willkommen \nin der Quiz App!",
 //                  ),
 //                ),
-                buildText(
-                  "Hier können Sie prüfungsrelevante Inhalte schnell und einfach lernen. "
-                  "\n\nFalls Ihnen die Fragen nicht ausreichen, können Sie auch selbstständig Fragen erstellen und einreichen."
-                  "\n\nBei Problemen oder Verbesserungsvorschlägen können Sie sich bei uns melden.",
+                      buildText(
+                        "Hier können Sie prüfungsrelevante Inhalte schnell und einfach lernen. "
+                        "\n\nFalls Ihnen die Fragen nicht ausreichen, können Sie auch selbstständig Fragen erstellen und einreichen."
+                        "\n\nBei Problemen oder Verbesserungsvorschlägen können Sie sich bei uns melden.",
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-        ]));
+        ));
   }
 
   Container buildHeader(text) {
