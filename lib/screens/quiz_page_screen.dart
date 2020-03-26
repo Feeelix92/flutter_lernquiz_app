@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hs_fulda/models/category.dart';
 import 'package:hs_fulda/models/question.dart';
@@ -170,28 +171,29 @@ class _QuizPageState extends State<QuizPage> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10.0),
+                      SizedBox(height: 30.0),
                       Card(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             ...options.map((option) => RadioListTile(
-                                  title:
-                                      Text(HtmlUnescape().convert("$option")),
-                                  groupValue: _answers[_currentIndex],
-                                  value: option,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _answers[_currentIndex] = option;
-                                    });
-                                  },
-                                )),
+                              title:
+                              Text(HtmlUnescape().convert("$option")),
+                              groupValue: _answers[_currentIndex],
+                              value: option,
+                              onChanged: (value) {
+                                setState(() {
+                                  _answers[_currentIndex] = option;
+                                });
+                              },
+                            )),
                           ],
                         ),
                       ),
                     ],
                   ),
-                )
+                ),
+
               ],
             ),
           ),
@@ -201,8 +203,6 @@ class _QuizPageState extends State<QuizPage> {
   }
 
   void _nextSubmit() {
-    cancelTimer = false;
-    _start = 31;
     setState(() {
       if (_answers[_currentIndex] == null && _start > 0) {
         _key.currentState.showSnackBar(SnackBar(
@@ -212,6 +212,8 @@ class _QuizPageState extends State<QuizPage> {
       }
       if (_currentIndex < (widget.noOfQuestions - 1)) {
         _currentIndex++;
+        cancelTimer = false;
+        _start = 31;
       } else {
         Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: (_) => QuizFinishedPage(
