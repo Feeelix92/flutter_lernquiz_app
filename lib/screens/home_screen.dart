@@ -16,26 +16,50 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.white,
             ),
           ),
+          actions: <Widget>[
+            IconButton(
+              onPressed: Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreen())),
+              icon: Icon(Icons.help),
+            ),
+          ],
           elevation: 3,
         ),
         body: Stack(children: <Widget>[
           Container(
             child: Column(
               children: <Widget>[
-                Image.asset('assets/img/tafel_home.jpg'),
                 Container(
+                  height: 250.0,
+                  width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      Theme.of(context).primaryColor,
-                      Theme.of(context).accentColor
-                    ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
-                  ),
-                  height: 100,
-                  width: 1000,
-                  child: buildHeader(
-                    "Herzlich Willkommen \nin der Quiz App!",
+                      image: DecorationImage(
+                          image: new AssetImage('assets/img/tafel_home.jpg'),
+                          fit: BoxFit.cover)),
+                  child: Center(
+                    child: Text(
+                      "Herzlich Willkommen \n in der Quiz App!",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                      ),
+                    ),
                   ),
                 ),
+//                Image.asset('assets/img/tafel_home.jpg'),
+//                Container(
+//                  decoration: BoxDecoration(
+//                    gradient: LinearGradient(colors: [
+//                      Theme.of(context).primaryColor,
+//                      Theme.of(context).accentColor
+//                    ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+//                  ),
+//                  height: 100,
+//                  width: 1000,
+//                  child: buildHeader(
+//                    "Herzlich Willkommen \nin der Quiz App!",
+//                  ),
+//                ),
                 buildText(
                   "Hier können Sie prüfungsrelevante Inhalte schnell und einfach lernen. Und weil uns noch kein besserer Text eingefallen ist steht das hier so.",
                 ),
